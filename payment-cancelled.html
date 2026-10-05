@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Payment cancelled — Zyps PostPilot</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0A0A0F">
+<meta name="color-scheme" content="dark">
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#6C3CE1;--purple-hi:#9B7BFF;--blue:#00D4FF;--bg:#0A0A0F;--card:#14141F;--line:rgba(255,255,255,.08);--line-2:rgba(255,255,255,.14);
+  --text:#F4F2FF;--muted:#A8A3C2;--dim:#7D7899;--ok:#3DDC97;--warn:#FFB547;--wa:#25D366;--grad:linear-gradient(135deg,#6C3CE1 0%,#8B5CF6 45%,#00D4FF 100%)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;
+  display:flex;flex-direction:column;background-image:radial-gradient(60% 50% at 50% 0%,rgba(108,60,225,.22),transparent 70%)}
+a{color:var(--purple-hi)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px;width:100%}
+header .bar{display:flex;align-items:center;height:68px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
+.logo img{width:42px;height:42px;border-radius:10px;background:#F3F6F5}
+.brand b{display:block;color:var(--purple-hi);font-weight:800;line-height:1.1}
+.brand small{display:block;font-size:11px;color:var(--muted)}
+main{flex:1;display:flex;align-items:center;padding:32px 0 56px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:40px 30px;text-align:center}
+.icon{width:76px;height:76px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;font-size:36px;background:rgba(108,60,225,.16);border:1px solid rgba(155,123,255,.3)}
+.icon.ok{background:rgba(61,220,151,.12);border-color:rgba(61,220,151,.35)}
+.big{font-size:64px;font-weight:800;letter-spacing:-.04em;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:10px}
+h1{font-size:clamp(26px,5vw,34px);line-height:1.2;letter-spacing:-.02em;margin-bottom:10px}
+.lead{color:var(--muted);font-size:16.5px;max-width:520px;margin:0 auto}
+.steps{text-align:left;max-width:460px;margin:26px auto 0;list-style:none;display:grid;gap:12px;counter-reset:s}
+.steps li{position:relative;padding-left:40px;color:var(--muted)}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;background:var(--purple);color:#fff}
+.steps strong{color:var(--text)}
+.note{margin-top:22px;padding:14px 16px;border-radius:14px;background:rgba(255,181,71,.08);border:1px solid rgba(255,181,71,.25);color:#F3DDB6;font-size:14.5px;text-align:left}
+.actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:12px;font-weight:600;text-decoration:none;font-size:15.5px}
+.btn-primary{background:var(--purple);color:#fff;box-shadow:0 10px 30px -10px rgba(108,60,225,.8)}
+.btn-ghost{border:1px solid var(--line-2);color:var(--text)}
+.btn-wa{background:var(--wa);color:#0A0A0F}
+footer{border-top:1px solid var(--line);padding:22px 0;color:var(--dim);font-size:13.5px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between}
+footer a{color:var(--muted);text-decoration:none}
+@media (max-width:520px){.card{padding:32px 20px}.btn{width:100%}}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <a href="/" class="logo" aria-label="Zyps PostPilot home"><img src="/zyps-logo-160.png" alt="Zyps" width="42" height="42"><span class="brand"><b>PostPilot</b><small>A Quality Group Venture</small></span></a>
+</div></header>
+<main><div class="wrap"><div class="card">
+  <div class="icon" aria-hidden="true">↩️</div>
+  <h1>Payment cancelled</h1>
+  <p class="lead">No problem — nothing was charged. You can pick up where you left off whenever you're ready.</p>
+  <div class="actions">
+    <a class="btn btn-primary" href="/#signup">Try again</a>
+    <a class="btn btn-wa" href="https://wa.me/919820011111?text=Hi%2C%20I%20need%20help%20with%20my%20PostPilot%20payment" target="_blank" rel="noopener">Questions? WhatsApp us</a>
+  </div>
+</div></div></main>
+<footer><div class="wrap">
+  <span>© 2026 Zyps, a Quality Group venture.</span>
+  <span><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="mailto:zypsapp@gmail.com">zypsapp@gmail.com</a></span>
+</div></footer>
+</body>
+</html>
