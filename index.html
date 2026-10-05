@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zyps PostPilot — Your Social Media, on Autopilot</title>
+<meta name="description" content="PostPilot posts to 7 platforms automatically — in Hindi, Tamil, Telugu and 5 more Indian languages. AI social media automation for Indian small businesses. From ₹1,000/month.">
+<link rel="canonical" href="https://postpilot.zypsapp.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://postpilot.zypsapp.com/">
+<meta property="og:title" content="Zyps PostPilot — Your Social Media, on Autopilot">
+<meta property="og:description" content="AI writes and publishes your posts on 7 platforms, in 8 Indian languages. Set it up once, never touch it again.">
+<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://postpilot.zypsapp.com/zyps-logo.png">
+<meta name="theme-color" content="#0A0A0F">
+<meta name="color-scheme" content="dark">
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --purple:#6C3CE1; --purple-hi:#9B7BFF; --purple-deep:#3B1F86;
+  --blue:#00D4FF; --bg:#0A0A0F; --bg-2:#101018; --card:#14141F; --card-2:#1A1A28;
+  --line:rgba(255,255,255,.08); --line-2:rgba(255,255,255,.14);
+  --text:#F4F2FF; --muted:#A8A3C2; --dim:#7D7899;
+  --ok:#3DDC97; --err:#FF6B7A; --wa:#25D366;
+  --radius:18px; --nav-h:68px;
+  --grad:linear-gradient(135deg,var(--purple) 0%,#8B5CF6 45%,var(--blue) 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif;background:var(--bg);color:var(--text);
+  line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+.wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 20px}
+section{position:relative;padding:96px 0;scroll-margin-top:var(--nav-h)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+h1,h2,h3{line-height:1.12;letter-spacing:-.025em;font-weight:800}
+h2{font-size:clamp(30px,4.6vw,46px);margin:14px 0 16px}
+.lead{color:var(--muted);font-size:clamp(16px,2vw,19px);max-width:640px}
+.center{text-align:center}.center .lead{margin:0 auto}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 24px;border-radius:12px;font-weight:600;font-size:16px;
+  border:1px solid transparent;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,background .2s ease,border-color .2s ease;white-space:nowrap}
+.btn-primary{background:var(--purple);color:#fff;box-shadow:0 10px 30px -10px rgba(108,60,225,.8),inset 0 1px 0 rgba(255,255,255,.18)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px -12px rgba(108,60,225,.95),inset 0 1px 0 rgba(255,255,255,.18);background:#7A4BEF}
+.btn-ghost{background:rgba(255,255,255,.04);border-color:var(--line-2);color:var(--text)}
+.btn-ghost:hover{background:rgba(255,255,255,.08);transform:translateY(-2px)}
+.btn-sm{padding:10px 18px;font-size:14px;border-radius:10px}
+.btn-block{width:100%}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto 0;height:var(--nav-h);z-index:50;transition:background .3s ease,border-color .3s ease,backdrop-filter .3s ease;border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(10,10,15,.72);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);border-bottom-color:var(--line)}
+.nav .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em}
+.logo-img{width:44px;height:44px;border-radius:11px;background:#F3F6F5;flex:none;box-shadow:0 6px 20px -8px rgba(108,60,225,.7)}
+.brand{display:flex;flex-direction:column;line-height:1.1}
+.brand b{font-weight:800;color:var(--purple-hi)}
+.brand small{font-size:11px;font-weight:500;letter-spacing:.02em;color:var(--muted);margin-top:3px}
+.foot-logo{width:112px;height:112px;border-radius:20px;background:#F3F6F5;margin-bottom:14px}
+.venture{display:inline-block;margin-top:10px;padding:4px 12px;border-radius:999px;font-size:12.5px;font-weight:600;color:#D9CFFF;background:rgba(108,60,225,.14);border:1px solid rgba(155,123,255,.3)}
+.ai-note{max-width:640px;margin:14px auto 0;color:var(--dim);font-size:14px;text-align:center}
+.nav-links{display:flex;align-items:center;gap:30px;list-style:none}
+.nav-links a{font-size:15px;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{display:flex;align-items:center;gap:12px}
+.burger{display:none;width:44px;height:44px;border-radius:10px;border:1px solid var(--line-2);background:rgba(255,255,255,.04);cursor:pointer;position:relative}
+.burger span{position:absolute;left:12px;right:12px;height:2px;background:var(--text);border-radius:2px;transition:transform .25s ease,opacity .2s}
+.burger span:nth-child(1){top:15px}.burger span:nth-child(2){top:21px}.burger span:nth-child(3){top:27px}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* hero */
+.hero{padding:calc(var(--nav-h) + 72px) 0 90px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto;height:900px;pointer-events:none;
+  background:radial-gradient(600px 400px at 20% 20%,rgba(108,60,225,.35),transparent 70%),radial-gradient(500px 380px at 85% 30%,rgba(0,212,255,.18),transparent 70%)}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:56px 56px;mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 30%,transparent 75%)}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 14px 7px 8px;border-radius:999px;background:rgba(108,60,225,.14);border:1px solid rgba(155,123,255,.3);font-size:13.5px;color:#D9CFFF}
+.pill b{background:var(--purple);color:#fff;border-radius:999px;padding:2px 9px;font-size:12px;font-weight:600}
+.hero h1{font-size:clamp(40px,6.4vw,72px);margin:22px 0 20px}
+.hero .lead{font-size:clamp(17px,2.1vw,20px)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin:34px 0 30px}
+.plats{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0 0 22px}
+.plats li{padding:6px 13px;border-radius:999px;font-size:13px;font-weight:600;color:#E9E4FF;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);opacity:0;transform:translateY(8px);animation:pillIn .5s ease forwards,pillGlow 7s ease-in-out infinite;animation-delay:calc(var(--i)*.09s + .2s),calc(var(--i)*1s + 1s)}
+.plats li i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;background:var(--c)}
+@keyframes pillIn{to{opacity:1;transform:none}}
+@keyframes pillGlow{0%,12%,100%{border-color:rgba(255,255,255,.12);box-shadow:none}6%{border-color:var(--c);box-shadow:0 0 18px -4px var(--c)}}
+.badges{display:flex;flex-wrap:wrap;gap:10px 22px;list-style:none;color:var(--muted);font-size:14px}
+.badges li{display:flex;align-items:center;gap:8px}
+.badges li::before{content:"✓";width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:800;color:var(--bg);background:var(--ok)}
+
+/* hero mockup */
+.mock{position:relative;border-radius:22px;padding:1px;background:linear-gradient(160deg,rgba(155,123,255,.55),rgba(0,212,255,.25) 40%,rgba(255,255,255,.06) 70%);
+  box-shadow:0 40px 100px -30px rgba(108,60,225,.55),0 0 0 1px rgba(255,255,255,.02)}
+.mock-inner{border-radius:21px;background:linear-gradient(180deg,#151522,#0F0F18);padding:18px;overflow:hidden}
+.mock-bar{display:flex;align-items:center;gap:7px;margin-bottom:16px}
+.mock-bar i{width:10px;height:10px;border-radius:50%;background:#2A2A3A}
+.mock-bar i:nth-child(1){background:#FF5F57}.mock-bar i:nth-child(2){background:#FEBC2E}.mock-bar i:nth-child(3){background:#28C840}
+.mock-bar span{margin-left:auto;font-size:12px;color:var(--dim)}
+.composer{background:var(--card-2);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.composer-top{display:flex;align-items:center;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-bottom:10px}
+.ai-chip{display:inline-flex;align-items:center;gap:6px;color:var(--blue);font-weight:600}
+.ai-chip::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 10px var(--blue);animation:pulse 1.6s ease-in-out infinite}
+.post-text{font-size:15px;line-height:1.55;min-height:72px}
+.post-text .hi{display:block;color:#E9E4FF;font-weight:600}
+.post-text .tags{color:var(--purple-hi)}
+.caret{display:inline-block;width:2px;height:1.05em;background:var(--blue);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(1) infinite}
+.channels{display:grid;gap:10px}
+.channel{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--line);transition:border-color .4s,background .4s}
+.channel.done{border-color:rgba(61,220,151,.35);background:rgba(61,220,151,.06)}
+.plat{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-weight:800;font-size:15px;color:#fff;flex:none}
+.plat.li{background:#0A66C2}.plat.ig{background:radial-gradient(circle at 30% 110%,#FFD776 0%,#F56040 35%,#C13584 65%,#5851DB 100%)}.plat.fb{background:#1877F2}
+.plat svg{width:18px;height:18px}
+.channel-name{font-size:14px;font-weight:600}.channel-sub{font-size:12px;color:var(--dim)}
+.status{margin-left:auto;font-size:12.5px;font-weight:600;padding:5px 11px;border-radius:999px;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;
+  background:rgba(255,255,255,.05);color:var(--muted);transition:background .3s,color .3s}
+.status.publishing{background:rgba(0,212,255,.12);color:var(--blue)}
+.status.publishing::before{content:"";width:11px;height:11px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:spin .8s linear infinite}
+.status.published{background:rgba(61,220,151,.14);color:var(--ok)}
+.float-chip{position:absolute;z-index:2;padding:10px 14px;border-radius:12px;background:rgba(20,20,31,.9);border:1px solid var(--line-2);font-size:13px;
+  box-shadow:0 20px 40px -15px rgba(0,0,0,.7);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);animation:floaty 6s ease-in-out infinite}
+.float-chip b{color:var(--ok)}
+.chip-a{top:-18px;right:18px}.chip-b{bottom:-20px;left:-14px;animation-delay:-3s}
+
+/* problem */
+.problem{background:linear-gradient(180deg,transparent,rgba(108,60,225,.05) 40%,transparent)}
+.cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
+.card{position:relative;background:linear-gradient(180deg,var(--card),#111119);border:1px solid var(--line);border-radius:var(--radius);padding:28px;transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease}
+.card:hover{transform:translateY(-4px);border-color:rgba(155,123,255,.35);box-shadow:0 24px 50px -24px rgba(108,60,225,.5)}
+.icon{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:25px;background:rgba(108,60,225,.14);border:1px solid rgba(155,123,255,.25);margin-bottom:18px}
+.card h3{font-size:20px;margin-bottom:8px;letter-spacing:-.015em}
+.card p{color:var(--muted);font-size:15.5px}
+.stat{display:inline-block;margin-top:14px;font-size:13px;font-weight:600;color:#FFB4BD;background:rgba(255,107,122,.1);border:1px solid rgba(255,107,122,.25);padding:4px 10px;border-radius:999px}
+
+/* how */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px;counter-reset:step;position:relative}
+.steps::before{content:"";position:absolute;top:58px;left:16%;right:16%;height:2px;background:linear-gradient(90deg,transparent,rgba(155,123,255,.5),rgba(0,212,255,.5),transparent)}
+.step{text-align:center;padding:0 10px;position:relative}
+.step-num{width:116px;height:116px;margin:0 auto 24px;border-radius:30px;display:grid;place-items:center;position:relative;
+  background:linear-gradient(180deg,#1C1830,#121220);border:1px solid rgba(155,123,255,.3);box-shadow:0 20px 50px -20px rgba(108,60,225,.7)}
+.step-num b{font-size:56px;font-weight:800;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.step-num span{position:absolute;right:-8px;bottom:-8px;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:20px;background:var(--card-2);border:1px solid var(--line-2)}
+.step h3{font-size:21px;margin-bottom:8px}
+.step p{color:var(--muted);max-width:300px;margin:0 auto}
+
+/* features */
+.features{background:radial-gradient(800px 500px at 50% 0%,rgba(108,60,225,.12),transparent 70%)}
+.grid-9{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:52px}
+.feature{padding:26px}
+.feature .icon{font-size:24px}
+.feature h3{font-size:18px}
+.feature p{font-size:15px}
+
+/* pricing */
+.pricing-grid{display:grid;grid-template-columns:repeat(2,minmax(0,420px));justify-content:center;gap:24px;margin-top:52px;align-items:stretch}
+.plan{display:flex;flex-direction:column;padding:34px 30px}
+.plan.popular{background:linear-gradient(180deg,#1E1636,#13121F);border-color:rgba(155,123,255,.55);box-shadow:0 30px 80px -30px rgba(108,60,225,.7)}
+.plan.popular::before{content:"";position:absolute;inset:-1px;border-radius:var(--radius);padding:1px;background:var(--grad);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.ribbon{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.04em;padding:6px 14px;border-radius:999px;white-space:nowrap}
+.plan-name{font-size:15px;font-weight:600;color:var(--purple-hi);text-transform:uppercase;letter-spacing:.08em}
+.price{display:flex;align-items:baseline;gap:6px;margin:14px 0 6px}
+.price b{font-size:52px;font-weight:800;letter-spacing:-.03em}
+.price span{color:var(--muted)}
+.plan-desc{color:var(--muted);font-size:15px;margin-bottom:22px}
+.plan{text-align:left}
+.checks{list-style:none;display:grid;gap:12px;margin-bottom:30px;flex:1;align-content:start}
+.checks li{position:relative;padding-left:32px;font-size:15.5px}
+.checks li::before{content:"✓";position:absolute;left:0;top:2px;width:21px;height:21px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:800;color:var(--purple-hi);background:rgba(108,60,225,.18)}
+.plan.popular .checks li::before{color:var(--bg);background:var(--blue)}
+.checks small{color:var(--dim)}
+.intl{margin-top:30px;text-align:center;color:var(--muted);font-size:15px}
+.intl b{color:var(--text)}
+
+/* signup */
+.signup{background:linear-gradient(180deg,transparent,rgba(0,212,255,.04) 30%,rgba(108,60,225,.08) 70%,transparent)}
+.form-card{max-width:720px;margin:48px auto 0;padding:36px;border-radius:24px;background:linear-gradient(180deg,#161624,#101019);border:1px solid var(--line-2);box-shadow:0 40px 90px -40px rgba(108,60,225,.6)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.field label,.legend{font-size:14px;font-weight:600;color:#DCD7F2}
+.opt{color:var(--dim);font-weight:500}
+.input{width:100%;height:50px;padding:0 15px;border-radius:12px;background:#0C0C14;border:1px solid var(--line-2);font-size:16px;transition:border-color .2s,box-shadow .2s}
+.input::placeholder{color:#5D5876}
+.input:hover{border-color:rgba(255,255,255,.22)}
+.input:focus{outline:none;border-color:var(--purple-hi);box-shadow:0 0 0 4px rgba(108,60,225,.22)}
+.input[aria-invalid="true"]{border-color:var(--err);box-shadow:0 0 0 4px rgba(255,107,122,.12)}
+select.input{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:40px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A8A3C2' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center}
+select.input option{background:#14141F;color:var(--text)}
+.phone-row{display:grid;grid-template-columns:118px 1fr;gap:8px}
+.err-msg{font-size:13px;color:var(--err);min-height:0}
+.err-msg:empty{display:none}
+.plans-pick{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.plan-opt{position:relative;cursor:pointer}
+.plan-opt input{position:absolute;opacity:0;pointer-events:none}
+.plan-opt .box{display:flex;flex-direction:column;gap:2px;padding:14px 16px;border-radius:12px;border:1px solid var(--line-2);background:#0C0C14;transition:border-color .2s,background .2s,box-shadow .2s}
+.plan-opt .box b{font-size:15.5px}.plan-opt .box span{font-size:13.5px;color:var(--muted)}
+.plan-opt input:checked + .box{border-color:var(--purple-hi);background:rgba(108,60,225,.12);box-shadow:0 0 0 3px rgba(108,60,225,.2)}
+.plan-opt input:focus-visible + .box{outline:2px solid var(--blue);outline-offset:2px}
+.terms{display:grid;gap:10px;padding:16px;border-radius:12px;background:rgba(255,255,255,.025);border:1px solid var(--line)}
+.term{display:flex;gap:11px;align-items:flex-start;font-size:13.5px;color:var(--muted);cursor:pointer}
+.term input{flex:none;width:18px;height:18px;margin-top:2px;accent-color:var(--purple)}
+.term a{color:var(--purple-hi);text-decoration:underline;text-underline-offset:2px}
+.submit-row{margin-top:24px}
+.btn[disabled]{opacity:.75;cursor:wait;transform:none}
+.spinner{width:18px;height:18px;border-radius:50%;border:2.5px solid rgba(255,255,255,.35);border-top-color:#fff;animation:spin .7s linear infinite}
+.form-note{margin-top:14px;text-align:center;font-size:13.5px;color:var(--dim)}
+.result{margin-top:20px;padding:16px 18px;border-radius:12px;font-size:15px;display:none}
+.result.show{display:block}
+.result.ok{background:rgba(61,220,151,.08);border:1px solid rgba(61,220,151,.35);color:#C9F7E3}
+.result.err{background:rgba(255,107,122,.08);border:1px solid rgba(255,107,122,.4);color:var(--err)}
+.result.info{background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.3);color:#BDF3FF}
+.result .btn{margin-top:14px}
+
+/* languages */
+.langs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px}
+.lang{padding:28px 22px;text-align:center}
+.lang .script{font-size:clamp(30px,4vw,40px);font-weight:700;line-height:1.3;background:linear-gradient(135deg,#fff,#C9BBFF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lang .name{margin-top:8px;color:var(--muted);font-size:14px;font-weight:500}
+.lang.en .script{background:var(--grad);-webkit-background-clip:text;background-clip:text}
+
+/* faq */
+.faq-list{max-width:780px;margin:48px auto 0;display:grid;gap:12px}
+.faq-item{border:1px solid var(--line);border-radius:14px;background:var(--card);transition:border-color .25s}
+.faq-item.open{border-color:rgba(155,123,255,.4)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;background:none;border:0;cursor:pointer;text-align:left;font-size:16.5px;font-weight:600}
+.faq-q .plus{flex:none;width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:rgba(108,60,225,.15);position:relative}
+.faq-q .plus::before,.faq-q .plus::after{content:"";position:absolute;width:12px;height:2px;border-radius:2px;background:var(--purple-hi);transition:transform .3s}
+.faq-q .plus::after{transform:rotate(90deg)}
+.faq-item.open .plus::after{transform:rotate(0)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+.faq-item.open .faq-a{grid-template-rows:1fr}
+.faq-a > div{overflow:hidden}
+.faq-a p{padding:0 22px 22px;color:var(--muted);font-size:15.5px}
+
+/* final cta + footer */
+.cta-band{padding:0 0 96px}
+.cta-box{position:relative;overflow:hidden;border-radius:28px;padding:56px 32px;text-align:center;background:linear-gradient(135deg,#2A1670,#13122A 55%,#0B2633);border:1px solid rgba(155,123,255,.3)}
+.cta-box::before{content:"";position:absolute;inset:auto -10% -60% -10%;height:120%;background:radial-gradient(closest-side,rgba(0,212,255,.25),transparent);pointer-events:none}
+.cta-box h2{position:relative}.cta-box p{position:relative;margin:0 auto 28px}
+footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px}
+.foot p{color:var(--muted);font-size:14.5px;margin-top:10px;max-width:340px}
+.foot-links{display:flex;flex-wrap:wrap;gap:12px 26px;list-style:none;font-size:14.5px;color:var(--muted)}
+.foot-links a:hover{color:var(--text)}
+.copy{margin-top:34px;padding-top:22px;border-top:1px solid var(--line);font-size:13.5px;color:var(--dim);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+
+/* whatsapp */
+.wa-float{position:fixed;right:20px;bottom:20px;z-index:60;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:var(--wa);
+  box-shadow:0 12px 30px -8px rgba(37,211,102,.7);transition:transform .25s ease}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:30px;height:30px}
+.wa-float::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--wa);animation:ring 2.4s ease-out infinite}
+
+/* reveal */
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.js .reveal.in{opacity:1;transform:none}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes blink{50%{opacity:0}}
+@keyframes pulse{50%{opacity:.35}}
+@keyframes floaty{50%{transform:translateY(-10px)}}
+@keyframes ring{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.6);opacity:0}}
+
+/* responsive */
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:64px}
+  .hero-copy{text-align:center}.hero .lead{margin:0 auto}
+  .hero-ctas,.badges,.plats{justify-content:center}
+  .mock{max-width:520px;margin:0 auto}
+  .grid-9{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:860px){
+  .nav-links{position:fixed;top:var(--nav-h);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:8px 20px 20px;
+    background:rgba(10,10,15,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line);
+    transform:translateY(-8px);opacity:0;visibility:hidden;transition:opacity .25s,transform .25s,visibility .25s}
+  .nav-links.open{transform:none;opacity:1;visibility:visible}
+  .nav-links a{display:block;padding:15px 4px;font-size:17px;border-bottom:1px solid var(--line)}
+  .nav-links .mobile-cta{padding-top:16px}.nav-links .mobile-cta a{border:0;padding:14px;text-align:center;color:#fff}
+  .burger{display:block}
+  .nav-cta .btn{display:none}
+  .cards-3,.steps{grid-template-columns:1fr}
+  .steps{gap:44px}.steps::before{display:none}
+  .pricing-grid{grid-template-columns:minmax(0,460px)}
+  .plan.popular{order:-1}
+}
+@media (min-width:861px){.nav-links .mobile-cta{display:none}}
+@media (max-width:640px){
+  section{padding:72px 0}
+  .hero{padding-top:calc(var(--nav-h) + 44px)}
+  .grid-9{grid-template-columns:1fr}
+  .langs{grid-template-columns:repeat(2,1fr);gap:12px}
+  .lang{padding:22px 12px}
+  .form-card{padding:24px 18px;border-radius:20px}
+  .form-grid,.plans-pick{grid-template-columns:1fr}
+  .hero-ctas .btn{width:100%}
+  .chip-b{left:4px}
+  .cta-box{padding:44px 20px}
+}
+@media (prefers-reduced-motion:reduce){
+  .plats li{animation:none;opacity:1;transform:none}
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .js .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+
+<!-- ═════════ NAVIGATION ═════════ -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="Zyps PostPilot home"><img src="/zyps-logo-160.png" class="logo-img" alt="Zyps" width="44" height="44"><span class="brand"><b>PostPilot</b><small>A Quality Group Venture</small></span></a>
+    <nav aria-label="Main">
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#languages">Languages</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li class="mobile-cta"><a href="#pricing" class="btn btn-primary btn-block">Get Started</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a href="#pricing" class="btn btn-primary btn-sm">Get Started</a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ═════════ HERO ═════════ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="pill"><b>New</b> Now posting in 8 Indian languages</span>
+      <h1>Your Social Media, <span class="grad-text">on Autopilot</span></h1>
+      <p class="lead">PostPilot posts to 7 platforms automatically — in Hindi, Tamil, Telugu and 5 more Indian languages. Set it up once, never touch it again.</p>
+      <div class="hero-ctas">
+        <a href="#signup" class="btn btn-primary">Get Started →</a>
+        <a href="#pricing" class="btn btn-ghost">See Pricing</a>
+      </div>
+      <ul class="plats" aria-label="Supported platforms"><li style="--i:0;--c:#0A66C2"><i aria-hidden="true"></i>LinkedIn</li><li style="--i:1;--c:#E1306C"><i aria-hidden="true"></i>Instagram</li><li style="--i:2;--c:#1877F2"><i aria-hidden="true"></i>Facebook</li><li style="--i:3;--c:#FFFFFF"><i aria-hidden="true"></i>X</li><li style="--i:4;--c:#B4B4B4"><i aria-hidden="true"></i>Threads</li><li style="--i:5;--c:#34A853"><i aria-hidden="true"></i>Google Business</li><li style="--i:6;--c:#29B6F6"><i aria-hidden="true"></i>Telegram</li></ul>
+      <ul class="badges">
+        <li>Pay by UPI — no card needed</li>
+        <li>Cancel anytime</li>
+        <li>Setup in 10 minutes</li>
+      </ul>
+    </div>
+
+    <div class="mock reveal" aria-label="PostPilot publishing a post to LinkedIn, Instagram and Facebook">
+      <div class="float-chip chip-a" aria-hidden="true">⚡ <b>3 platforms</b> · 0 clicks</div>
+      <div class="float-chip chip-b" aria-hidden="true">🪔 Festival post scheduled · <b>Diwali</b></div>
+      <div class="mock-inner">
+        <div class="mock-bar" aria-hidden="true"><i></i><i></i><i></i><span>PostPilot · Today 9:00 AM</span></div>
+        <div class="composer">
+          <div class="composer-top"><span class="ai-chip">AI writing</span><span>Sharma Sweets · हिन्दी</span></div>
+          <p class="post-text" id="mock-text">
+            <span class="hi">इस दिवाली, मिठास दोगुनी! 🪔</span>
+            Fresh kaju katli &amp; motichoor laddoo — order today, free delivery in Pune. <span class="tags">#Diwali #SharmaSweets</span>
+          </p>
+        </div>
+        <div class="channels" id="channels">
+          <div class="channel" data-ch>
+            <span class="plat li" aria-hidden="true">in</span>
+            <div><div class="channel-name">LinkedIn</div><div class="channel-sub">Company page</div></div>
+            <span class="status published">Published ✓</span>
+          </div>
+          <div class="channel" data-ch>
+            <span class="plat ig" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff"/></svg></span>
+            <div><div class="channel-name">Instagram</div><div class="channel-sub">Post + image</div></div>
+            <span class="status published">Published ✓</span>
+          </div>
+          <div class="channel" data-ch>
+            <span class="plat fb" aria-hidden="true">f</span>
+            <div><div class="channel-name">Facebook</div><div class="channel-sub">Business page</div></div>
+            <span class="status published">Published ✓</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ PROBLEM ═════════ -->
+<section class="problem" aria-labelledby="problem-h">
+  <div class="wrap center">
+    <span class="eyebrow reveal">The problem</span>
+    <h2 id="problem-h" class="reveal">You're great at your business.<br><span class="grad-text">Social media shouldn't be your second job.</span></h2>
+    <div class="cards-3">
+      <article class="card reveal" style="--d:.05s">
+        <div class="icon" aria-hidden="true">⏰</div>
+        <h3>2 hours/day wasted</h3>
+        <p>Writing captions, resizing images, logging into every app — it quietly eats your mornings.</p>
+        <span class="stat">Time you could spend on customers</span>
+      </article>
+      <article class="card reveal" style="--d:.15s">
+        <div class="icon" aria-hidden="true">📉</div>
+        <h3>Inconsistent posting kills reach</h3>
+        <p>A busy week hits and your pages go silent. Customers assume you've closed.</p>
+        <span class="stat">Algorithms reward consistency</span>
+      </article>
+      <article class="card reveal" style="--d:.25s">
+        <div class="icon" aria-hidden="true">🗣️</div>
+        <h3>English-only tools miss your customers</h3>
+        <p>Your customers speak Hindi, Tamil or Marathi. Most tools only write in English.</p>
+        <span class="stat">Speak their language</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ HOW IT WORKS ═════════ -->
+<section id="how" aria-labelledby="how-h">
+  <div class="wrap center">
+    <span class="eyebrow reveal">How it works</span>
+    <h2 id="how-h" class="reveal">Three steps. <span class="grad-text">Then it runs itself.</span></h2>
+    <p class="lead reveal">About 20 minutes of setup — after that, PostPilot handles every post.</p>
+    <div class="steps">
+      <div class="step reveal" style="--d:.05s">
+        <div class="step-num"><b>1</b><span aria-hidden="true">🔗</span></div>
+        <h3>Connect your accounts</h3>
+        <p>Link LinkedIn, Instagram, Facebook and more with the setup wizard — each step has a guide.</p>
+      </div>
+      <div class="step reveal" style="--d:.15s">
+        <div class="step-num"><b>2</b><span aria-hidden="true">🏪</span></div>
+        <h3>Tell us your business</h3>
+        <p>Your niche, your tone, your language. PostPilot learns your style from what you approve.</p>
+      </div>
+      <div class="step reveal" style="--d:.25s">
+        <div class="step-num"><b>3</b><span aria-hidden="true">🚀</span></div>
+        <h3>PostPilot posts every day</h3>
+        <p>Fresh, on-brand posts go out at your best times — festivals included, every year.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ FEATURES ═════════ -->
+<section id="features" class="features" aria-labelledby="features-h">
+  <div class="wrap center">
+    <span class="eyebrow reveal">Features</span>
+    <h2 id="features-h" class="reveal">Everything a social media team does. <span class="grad-text">For one monthly fee.</span></h2>
+    <div class="grid-9">
+      <article class="card feature reveal" style="--d:.0s"><div class="icon" aria-hidden="true">🤖</div><h3>AI-Powered Posts</h3><p>Claude AI writes posts tailored to your business, your offers and your tone.</p></article>
+      <article class="card feature reveal" style="--d:.08s"><div class="icon" aria-hidden="true">🌐</div><h3>7 Platforms</h3><p>LinkedIn, Instagram, Facebook, X, Threads, Google Business and Telegram.</p></article>
+      <article class="card feature reveal" style="--d:.16s"><div class="icon" aria-hidden="true">🗣️</div><h3>8 Indian Languages</h3><p>Hindi, Tamil, Telugu, Bengali, Marathi, Gujarati, Kannada and Punjabi — plus English.</p></article>
+      <article class="card feature reveal" style="--d:.0s"><div class="icon" aria-hidden="true">📅</div><h3>Festival Calendar</h3><p>Auto-posts for Diwali, Holi, Eid, Christmas and more — updated every year.</p></article>
+      <article class="card feature reveal" style="--d:.08s"><div class="icon" aria-hidden="true">📊</div><h3>Smart Analytics</h3><p>Learns which posts and times work best for you, and improves over time.</p></article>
+      <article class="card feature reveal" style="--d:.16s"><div class="icon" aria-hidden="true">💬</div><h3>Inbox Manager</h3><p>Spots leads and complaints in your comments automatically, so none slip by.</p></article>
+      <article class="card feature reveal" style="--d:.0s"><div class="icon" aria-hidden="true">✅</div><h3>WhatsApp Approval</h3><p>Approve each post by replying YES on WhatsApp — or let it run on its own.</p></article>
+      <article class="card feature reveal" style="--d:.08s"><div class="icon" aria-hidden="true">🖼️</div><h3>AI Images</h3><p>Generates an image for each post automatically, using your own image AI key.</p></article>
+      <article class="card feature reveal" style="--d:.16s"><div class="icon" aria-hidden="true">🔄</div><h3>Auto-Updates</h3><p>New features install themselves every Monday. Nothing to download, ever.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ PRICING ═════════ -->
+<section id="pricing" aria-labelledby="pricing-h">
+  <div class="wrap center">
+    <span class="eyebrow reveal">Pricing</span>
+    <h2 id="pricing-h" class="reveal">Simple pricing. <span class="grad-text">Cancel anytime.</span></h2>
+    <p class="lead reveal">Less than a day's wages for a social media assistant — every month.</p>
+    <div class="pricing-grid">
+      <article class="card plan reveal" style="--d:.05s">
+        <div class="plan-name">Starter</div>
+        <div class="price"><b>₹1,000</b><span>/month</span></div>
+        <p class="plan-desc">For shops getting started online.</p>
+        <ul class="checks">
+          <li>3 platforms <small>(LinkedIn, Facebook, Instagram)</small></li>
+          <li>1 post per day</li>
+          <li>English only</li>
+          <li>Basic analytics</li>
+          <li>Email support</li>
+        </ul>
+        <a href="#signup" class="btn btn-ghost btn-block" data-plan="starter">Start Starter Plan</a>
+      </article>
+      <article class="card plan popular reveal" style="--d:.15s">
+        <span class="ribbon">MOST POPULAR</span>
+        <div class="plan-name">Popular</div>
+        <div class="price"><b>₹2,999</b><span>/month</span></div>
+        <p class="plan-desc">The full autopilot, in your customers' language.</p>
+        <ul class="checks">
+          <li>All 7 platforms</li>
+          <li>5 posts per day</li>
+          <li>All 8 Indian languages + English</li>
+          <li>AI image generation <small>(your own image AI key)</small></li>
+          <li>WhatsApp approval</li>
+          <li>A/B testing</li>
+          <li>Priority support</li>
+          <li>TikTok + Pinterest <small>(when your account is approved)</small></li>
+        </ul>
+        <a href="#signup" class="btn btn-primary btn-block" data-plan="popular">Start Popular Plan</a>
+      </article>
+    </div>
+    <p class="intl reveal">🌍 <b>International pricing available</b> — USD, GBP, AED, AUD, SGD. Choose your country code in the form and you'll pay by card in your currency.</p>
+    <p class="ai-note reveal"><b>AI usage is billed separately.</b> Posts are written with your own Anthropic (Claude) API key, so Anthropic bills you directly for what you use. Image generation works the same way with your own OpenAI or Stability AI key. The setup wizard walks you through creating them.</p>
+  </div>
+</section>
+
+<!-- ═════════ SIGNUP ═════════ -->
+<section id="signup" class="signup" aria-labelledby="signup-h">
+  <div class="wrap center">
+    <span class="eyebrow reveal">Get started</span>
+    <h2 id="signup-h" class="reveal">Start your <span class="grad-text">autopilot</span> today</h2>
+    <p class="lead reveal">Fill this in and we'll send your secure payment link. Your license key arrives within 2 minutes of payment.</p>
+
+    <form class="form-card reveal" id="signup-form" novalidate>
+      <div class="form-grid">
+        <div class="field">
+          <label for="f-name">Full Name</label>
+          <input class="input" id="f-name" name="name" autocomplete="name" placeholder="Priya Sharma" required aria-describedby="e-name">
+          <span class="err-msg" id="e-name" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="f-business">Business Name</label>
+          <input class="input" id="f-business" name="business" autocomplete="organization" placeholder="Sharma Sweets" required aria-describedby="e-business">
+          <span class="err-msg" id="e-business" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input class="input" id="f-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="priya@sharmasweets.in" required aria-describedby="e-email">
+          <span class="err-msg" id="e-email" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="f-phone">WhatsApp Number</label>
+          <div class="phone-row">
+            <select class="input" id="f-cc" name="cc" aria-label="Country code">
+              <option value="+91" selected>🇮🇳 +91</option>
+              <option value="+971">🇦🇪 +971</option>
+              <option value="+44">🇬🇧 +44</option>
+              <option value="+61">🇦🇺 +61</option>
+              <option value="+65">🇸🇬 +65</option>
+              <option value="+1">🇺🇸 +1</option>
+            </select>
+            <input class="input" id="f-phone" name="phone" type="tel" autocomplete="tel-national" inputmode="numeric" placeholder="98200 11111" required aria-describedby="e-phone">
+          </div>
+          <span class="err-msg" id="e-phone" role="alert"></span>
+        </div>
+        <div class="field full">
+          <label for="f-type">Business Type</label>
+          <select class="input" id="f-type" name="type" required aria-describedby="e-type">
+            <option value="" selected disabled>Choose your business type</option>
+            <option>Restaurant</option>
+            <option>Retail Shop</option>
+            <option>Salon/Spa</option>
+            <option>Real Estate</option>
+            <option>Healthcare</option>
+            <option>Education</option>
+            <option>Other</option>
+          </select>
+          <span class="err-msg" id="e-type" role="alert"></span>
+        </div>
+        <fieldset class="field full" style="border:0">
+          <legend class="legend" style="margin-bottom:7px">Plan</legend>
+          <div class="plans-pick">
+            <label class="plan-opt"><input type="radio" name="plan" value="starter"><span class="box"><b>Starter</b><span>₹1,000/month · 3 platforms</span></span></label>
+            <label class="plan-opt"><input type="radio" name="plan" value="popular" checked><span class="box"><b>Popular</b><span>₹2,999/month · all 7 + languages</span></span></label>
+          </div>
+        </fieldset>
+        <div class="field full">
+          <label for="f-coupon">Coupon Code <span class="opt">(optional)</span></label>
+          <input class="input" id="f-coupon" name="coupon" autocomplete="off" placeholder="LAUNCH50" style="text-transform:uppercase">
+        </div>
+        <div class="field full">
+          <div class="terms" id="terms" aria-describedby="e-terms">
+            <label class="term"><input type="checkbox" id="tc1"><span>I agree to the <a href="/terms.html" target="_blank" rel="noopener">Terms of Service</a> and Content Policy. I am responsible for all content published through PostPilot.</span></label>
+            <label class="term"><input type="checkbox" id="tc2"><span>I will not publish political, religious, offensive or abusive content. Violations lead to a permanent ban without refund.</span></label>
+            <label class="term"><input type="checkbox" id="tc3"><span>I consent to automated content checks for policy compliance, as described in the <a href="/privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</span></label>
+          </div>
+          <span class="err-msg" id="e-terms" role="alert"></span>
+        </div>
+      </div>
+      <div class="submit-row">
+        <button type="submit" class="btn btn-primary btn-block" id="submit-btn">Get My Payment Link →</button>
+        <p class="form-note">🔒 Secure payment via Cashfree (UPI, cards) in India · Stripe internationally</p>
+      </div>
+      <div class="result" id="result" role="status" aria-live="polite"></div>
+      <noscript><p class="result err show">This form needs JavaScript. Email us at zypsapp@gmail.com and we'll send your payment link.</p></noscript>
+    </form>
+  </div>
+</section>
+
+<!-- ═════════ LANGUAGES ═════════ -->
+<section id="languages" aria-labelledby="lang-h">
+  <div class="wrap center">
+    <span class="eyebrow reveal">Languages</span>
+    <h2 id="lang-h" class="reveal">Speaks your <span class="grad-text">customers' language</span></h2>
+    <p class="lead reveal">Every post written natively — not machine-translated — in the script your customers read.</p>
+    <div class="langs">
+      <div class="card lang reveal" style="--d:.0s"><div class="script" lang="hi">हिन्दी</div><div class="name">Hindi</div></div>
+      <div class="card lang reveal" style="--d:.06s"><div class="script" lang="ta">தமிழ்</div><div class="name">Tamil</div></div>
+      <div class="card lang reveal" style="--d:.12s"><div class="script" lang="te">తెలుగు</div><div class="name">Telugu</div></div>
+      <div class="card lang reveal" style="--d:.0s"><div class="script" lang="bn">বাংলা</div><div class="name">Bengali</div></div>
+      <div class="card lang reveal" style="--d:.06s"><div class="script" lang="mr">मराठी</div><div class="name">Marathi</div></div>
+      <div class="card lang reveal" style="--d:.12s"><div class="script" lang="gu">ગુજરાતી</div><div class="name">Gujarati</div></div>
+      <div class="card lang reveal" style="--d:.0s"><div class="script" lang="kn">ಕನ್ನಡ</div><div class="name">Kannada</div></div>
+      <div class="card lang reveal" style="--d:.06s"><div class="script" lang="pa">ਪੰਜਾਬੀ</div><div class="name">Punjabi</div></div>
+      <div class="card lang en reveal" style="--d:.12s"><div class="script">English</div><div class="name">Plus English, always</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ FAQ ═════════ -->
+<section id="faq" aria-labelledby="faq-h">
+  <div class="wrap center">
+    <span class="eyebrow reveal">FAQ</span>
+    <h2 id="faq-h" class="reveal">Questions, <span class="grad-text">answered</span></h2>
+    <div class="faq-list" id="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false" aria-controls="a1" id="q1">Do I need to know anything about social media?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a" id="a1" role="region" aria-labelledby="q1"><div><p>No — PostPilot handles everything automatically: topics, writing, images, hashtags and posting times. The only extra thing you need is an Anthropic (Claude) API key for the AI writing, billed by Anthropic based on your usage; the setup wizard shows you how to get one.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false" aria-controls="a2" id="q2">Which platforms does PostPilot post to?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a" id="a2" role="region" aria-labelledby="q2"><div><p>LinkedIn, Instagram, Facebook, X (Twitter), Threads, Google Business Profile, and Telegram. TikTok and Pinterest are also supported when your account is approved.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false" aria-controls="a3" id="q3">What happens after I pay?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a" id="a3" role="region" aria-labelledby="q3"><div><p>You receive a license key by email and WhatsApp within 2 minutes. Run the setup wizard, connect your accounts, and PostPilot starts posting the next morning.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false" aria-controls="a4" id="q4">Can I approve posts before they go live?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a" id="a4" role="region" aria-labelledby="q4"><div><p>Yes — on the Popular plan, PostPilot sends you a WhatsApp message for each post. Reply YES to approve, NO to reject.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false" aria-controls="a5" id="q5">What if I want to cancel?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a" id="a5" role="region" aria-labelledby="q5"><div><p>Email us at <a href="mailto:zypsapp@gmail.com" style="color:var(--purple-hi)">zypsapp@gmail.com</a> and we cancel immediately. No questions asked.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false" aria-controls="a6" id="q6">Is my data safe?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a" id="a6" role="region" aria-labelledby="q6"><div><p>Yes. Your social media tokens stay on your own computer — they are never sent to or stored on our servers.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ FINAL CTA ═════════ -->
+<div class="cta-band">
+  <div class="wrap">
+    <div class="cta-box reveal">
+      <h2>Tomorrow morning, your first post <span class="grad-text">goes out on its own.</span></h2>
+      <p class="lead">Set it up once tonight. PostPilot takes it from there.</p>
+      <a href="#pricing" class="btn btn-primary">Get Started →</a>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- ═════════ FOOTER ═════════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="#top" aria-label="Zyps PostPilot home"><img src="/zyps-logo.png" class="foot-logo" alt="Zyps logo" width="112" height="112" loading="lazy"></a>
+        <div class="brand"><b style="font-size:19px">PostPilot</b></div>
+        <p>AI social media automation for Indian small businesses</p>
+        <span class="venture">A Quality Group Venture</span>
+        <p>Quality Group · Baijnath, Himachal Pradesh 176115</p>
+      </div>
+      <ul class="foot-links">
+        <li><a href="/privacy.html">Privacy Policy</a></li>
+        <li><a href="/terms.html">Terms of Service</a></li>
+        <li><a href="mailto:zypsapp@gmail.com">zypsapp@gmail.com</a></li>
+      </ul>
+    </div>
+    <div class="copy"><span>© 2026 Zyps, a Quality Group venture. All rights reserved.</span><span>Made in India 🇮🇳</span></div>
+  </div>
+</footer>
+
+<a class="wa-float" id="wa-float" href="#" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <svg viewBox="0 0 32 32" fill="#fff" aria-hidden="true"><path d="M16.04 3C9.4 3 4 8.33 4 14.9c0 2.62.86 5.05 2.33 7.02L4.8 27.8l6.1-1.6a12.2 12.2 0 0 0 5.14 1.13h.01c6.63 0 12.03-5.33 12.03-11.9C28.08 8.33 22.67 3 16.04 3zm0 21.8h-.01a10.1 10.1 0 0 1-5.13-1.4l-.37-.21-3.62.94.97-3.48-.24-.36a9.73 9.73 0 0 1-1.52-5.2c0-5.43 4.47-9.85 9.93-9.85 5.47 0 9.93 4.42 9.93 9.86 0 5.43-4.46 9.7-9.94 9.7zm5.45-7.36c-.3-.15-1.77-.87-2.04-.96-.28-.1-.48-.15-.68.15-.2.3-.78.96-.95 1.16-.18.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.78-1.49-1.75-1.66-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.6-.92-2.2-.24-.57-.49-.5-.67-.5h-.58c-.2 0-.52.07-.8.37-.27.3-1.04 1.01-1.04 2.46 0 1.45 1.07 2.86 1.22 3.06.15.2 2.1 3.17 5.08 4.45.71.3 1.27.49 1.7.62.72.23 1.37.2 1.88.12.57-.08 1.77-.71 2.02-1.4.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/></svg>
+</a>
+
+<script>
+(function () {
+  "use strict";
+
+  // ── Settings ─────────────────────────────────────────────────────────
+  var API_BASE        = "https://zyps-postpilot-server.onrender.com";
+  var WHATSAPP_NUMBER = "919820011111";        // wa.me format: country code + number, no "+"
+  var WHATSAPP_TEXT   = "Hi, I want to know more about PostPilot";
+  var REQUEST_TIMEOUT = 75000;                  // Render free instances can take ~1 min to wake
+
+  var $ = function (s, el) { return (el || document).querySelector(s); };
+  var $$ = function (s, el) { return Array.prototype.slice.call((el || document).querySelectorAll(s)); };
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ── WhatsApp button ──────────────────────────────────────────────────
+  $("#wa-float").href = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(WHATSAPP_TEXT);
+
+  // ── Sticky nav ───────────────────────────────────────────────────────
+  var nav = $("#nav");
+  var onScroll = function () { nav.classList.toggle("scrolled", window.scrollY > 10); };
+  onScroll(); window.addEventListener("scroll", onScroll, { passive: true });
+
+  // ── Mobile menu ──────────────────────────────────────────────────────
+  var burger = $("#burger"), links = $("#nav-links");
+  var setMenu = function (open) {
+    links.classList.toggle("open", open);
+    burger.setAttribute("aria-expanded", String(open));
+    burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  };
+  burger.addEventListener("click", function () { setMenu(!links.classList.contains("open")); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") setMenu(false); });
+
+  // ── Smooth scrolling for in-page links (closes the mobile menu) ──────
+  $$('a[href^="#"]').forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      var id = a.getAttribute("href");
+      if (id.length < 2) return;
+      var target = document.getElementById(id.slice(1));
+      if (!target) return;
+      e.preventDefault();
+      setMenu(false);
+      target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+      if (history.replaceState) history.replaceState(null, "", id);
+    });
+  });
+
+  // ── Pricing buttons pre-select the plan ──────────────────────────────
+  $$("[data-plan]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var radio = $('input[name="plan"][value="' + btn.dataset.plan + '"]');
+      if (radio) radio.checked = true;
+      setTimeout(function () { $("#f-name").focus({ preventScroll: true }); }, 600);
+    });
+  });
+
+  // ── Scroll reveal ────────────────────────────────────────────────────
+  if ("IntersectionObserver" in window && !reduceMotion) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    $$(".reveal").forEach(function (el) { io.observe(el); });
+  } else {
+    $$(".reveal").forEach(function (el) { el.classList.add("in"); });
+  }
+
+  // ── Hero mockup: publish to each platform in turn, on a loop ─────────
+  var channels = $$("[data-ch]");
+  function runMock() {
+    channels.forEach(function (ch) {
+      ch.classList.remove("done");
+      var s = $(".status", ch); s.className = "status"; s.textContent = "Queued";
+    });
+    channels.forEach(function (ch, i) {
+      var s = $(".status", ch);
+      setTimeout(function () { s.className = "status publishing"; s.textContent = "Publishing"; }, 900 + i * 900);
+      setTimeout(function () { s.className = "status published"; s.textContent = "Published ✓"; ch.classList.add("done"); }, 1900 + i * 900);
+    });
+  }
+  if (!reduceMotion && channels.length) {
+    var mockSeen = false;
+    var mo = "IntersectionObserver" in window ? new IntersectionObserver(function (e) {
+      if (e[0].isIntersecting && !mockSeen) { mockSeen = true; runMock(); setInterval(runMock, 7000); }
+    }, { threshold: 0.3 }) : null;
+    if (mo) mo.observe($(".mock")); else { runMock(); setInterval(runMock, 7000); }
+  } else {
+    channels.forEach(function (ch) { ch.classList.add("done"); });
+  }
+
+  // ── FAQ accordion ────────────────────────────────────────────────────
+  $$(".faq-q").forEach(function (q) {
+    q.addEventListener("click", function () {
+      var item = q.parentElement, open = !item.classList.contains("open");
+      $$(".faq-item.open").forEach(function (o) {
+        if (o !== item) { o.classList.remove("open"); $(".faq-q", o).setAttribute("aria-expanded", "false"); }
+      });
+      item.classList.toggle("open", open);
+      q.setAttribute("aria-expanded", String(open));
+    });
+  });
+
+  // ── Signup form ──────────────────────────────────────────────────────
+  var form = $("#signup-form"), result = $("#result"), submitBtn = $("#submit-btn");
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  function setError(id, msg) {
+    var input = document.getElementById(id), box = document.getElementById("e-" + id.replace("f-", ""));
+    if (input && input.tagName !== "DIV") input.setAttribute("aria-invalid", msg ? "true" : "false");
+    if (box) box.textContent = msg || "";
+    return !msg;
+  }
+
+  // Indian numbers: 10 digits starting 6–9 (a leading 0 or 91 is dropped). Others: 6–14 digits.
+  function normalisePhone(cc, raw) {
+    var d = String(raw || "").replace(/\D/g, "");
+    if (cc === "+91") {
+      if (d.length === 12 && d.indexOf("91") === 0) d = d.slice(2);
+      if (d.length === 11 && d.charAt(0) === "0") d = d.slice(1);
+      return /^[6-9]\d{9}$/.test(d) ? cc + d : null;
+    }
+    return /^\d{6,14}$/.test(d) ? cc + d : null;
+  }
+
+  function validate() {
+    var ok = true, first = null;
+    var check = function (id, cond, msg) { var good = setError(id, cond ? "" : msg); if (!good) { ok = false; first = first || id; } };
+    check("f-name", $("#f-name").value.trim().length >= 2, "Please enter your full name.");
+    check("f-business", $("#f-business").value.trim().length >= 2, "Please enter your business name.");
+    check("f-email", EMAIL_RE.test($("#f-email").value.trim()), "Please enter a valid email address.");
+    var cc = $("#f-cc").value;
+    check("f-phone", !!normalisePhone(cc, $("#f-phone").value),
+          cc === "+91" ? "Enter a valid 10-digit Indian mobile number." : "Enter a valid phone number.");
+    check("f-type", !!$("#f-type").value, "Please choose your business type.");
+    var termsOk = $("#tc1").checked && $("#tc2").checked && $("#tc3").checked;
+    $("#e-terms").textContent = termsOk ? "" : "Please accept all three to continue.";
+    if (!termsOk) { ok = false; first = first || "tc1"; }
+    if (first) document.getElementById(first).focus();
+    return ok;
+  }
+
+  // Re-validate a field once the user fixes it
+  ["f-name", "f-business", "f-email", "f-phone", "f-type"].forEach(function (id) {
+    var el = document.getElementById(id);
+    el.addEventListener(el.tagName === "SELECT" ? "change" : "input", function () {
+      if (el.getAttribute("aria-invalid") === "true") setError(id, "");
+    });
+  });
+
+  function show(kind, html) {
+    result.className = "result show " + kind;
+    result.innerHTML = "";
+    if (typeof html === "string") result.textContent = html; else result.appendChild(html);
+  }
+
+  function setLoading(on) {
+    submitBtn.disabled = on;
+    submitBtn.innerHTML = on ? '<span class="spinner" aria-hidden="true"></span> Sending…' : "Get My Payment Link →";
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    result.className = "result";
+    if (!validate()) return;
+
+    var cc = $("#f-cc").value;
+    var payload = {
+      name: $("#f-name").value.trim(),
+      business_name: $("#f-business").value.trim(),
+      email: $("#f-email").value.trim().toLowerCase(),
+      phone: normalisePhone(cc, $("#f-phone").value),
+      niche: $("#f-type").value,
+      plan: ($('input[name="plan"]:checked') || {}).value || "popular",
+      coupon: $("#f-coupon").value.trim().toUpperCase(),
+      tc1: true, tc2: true, tc3: true,
+      source: "website"
+    };
+
+    setLoading(true);
+    var controller = "AbortController" in window ? new AbortController() : null;
+    var timeout = setTimeout(function () { if (controller) controller.abort(); }, REQUEST_TIMEOUT);
+    var slow = setTimeout(function () {
+      show("info", "Waking up our server — the first request can take up to a minute. Please keep this page open…");
+    }, 6000);
+
+    fetch(API_BASE + "/signup", {
+      method: "POST",
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      signal: controller ? controller.signal : undefined
+    })
+      .then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (data) { return { res: res, data: data }; });
+      })
+      .then(function (r) {
+        var data = r.data || {};
+        if (r.res.ok && data.success) {
+          // International (Stripe): go straight to the secure checkout page
+          if (data.provider === "stripe" && /^https:\/\/checkout\.stripe\.com\//.test(data.checkout_url || "")) {
+            show("info", "Redirecting you to secure checkout…");
+            window.location.href = data.checkout_url;
+            return;
+          }
+          var box = document.createElement("div");
+          var msg = document.createElement("p");
+          msg.textContent = "✅ Payment link sent to your WhatsApp and email! Complete payment to activate your account.";
+          box.appendChild(msg);
+          if (/^(https:|upi:)/i.test(data.pay_url || "")) {
+            var a = document.createElement("a");
+            a.className = "btn btn-primary"; a.href = data.pay_url; a.rel = "noopener"; a.target = "_blank";
+            a.textContent = "Complete payment now →";
+            box.appendChild(a);
+          }
+          show("ok", box);
+          form.reset();
+          $('input[name="plan"][value="' + payload.plan + '"]').checked = true;
+        } else {
+          show("err", data.error || ("Something went wrong (error " + r.res.status + "). Please try again."));
+        }
+      })
+      .catch(function (err) {
+        show("err", err && err.name === "AbortError"
+          ? "Our server took too long to respond. Please try again in a moment."
+          : "We couldn't reach our server. Check your internet connection and try again — or message us on WhatsApp.");
+      })
+      .then(function () { clearTimeout(timeout); clearTimeout(slow); setLoading(false); });
+  });
+})();
+</script>
+</body>
+</html>
