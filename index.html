@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Zyps PostPilot — Your Social Media, on Autopilot</title>
-<meta name="description" content="PostPilot posts to 7 platforms automatically — in Hindi, Tamil, Telugu and 5 more Indian languages. AI social media automation for Indian small businesses. From ₹1,000/month.">
+<meta name="description" content="PostPilot posts to 7 platforms automatically — in Hindi, Tamil, Telugu and 5 more Indian languages. AI social media automation for Indian small businesses, all AI included. From ₹1,499/month.">
 <link rel="canonical" href="https://postpilot.zypsapp.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://postpilot.zypsapp.com/">
@@ -165,7 +165,7 @@ h2{font-size:clamp(30px,4.6vw,46px);margin:14px 0 16px}
 .feature p{font-size:15px}
 
 /* pricing */
-.pricing-grid{display:grid;grid-template-columns:repeat(2,minmax(0,420px));justify-content:center;gap:24px;margin-top:52px;align-items:stretch}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,minmax(0,360px));justify-content:center;gap:22px;margin-top:52px;align-items:stretch}
 .plan{display:flex;flex-direction:column;padding:34px 30px}
 .plan.popular{background:linear-gradient(180deg,#1E1636,#13121F);border-color:rgba(155,123,255,.55);box-shadow:0 30px 80px -30px rgba(108,60,225,.7)}
 .plan.popular::before{content:"";position:absolute;inset:-1px;border-radius:var(--radius);padding:1px;background:var(--grad);
@@ -182,7 +182,16 @@ h2{font-size:clamp(30px,4.6vw,46px);margin:14px 0 16px}
 .checks li::before{content:"✓";position:absolute;left:0;top:2px;width:21px;height:21px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:800;color:var(--purple-hi);background:rgba(108,60,225,.18)}
 .plan.popular .checks li::before{color:var(--bg);background:var(--blue)}
 .checks small{color:var(--dim)}
-.intl{margin-top:30px;text-align:center;color:var(--muted);font-size:15px}
+.intl{margin-top:14px;text-align:center;color:var(--muted);font-size:15px}
+.all-ai{margin-top:34px;text-align:center;font-size:17px;color:var(--text)}
+.compare-wrap{max-width:900px;margin:44px auto 0;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line-2);border-radius:18px}
+.compare{width:100%;border-collapse:collapse;font-size:15px;min-width:560px;text-align:center}
+.compare caption{caption-side:top;text-align:left;font-weight:700;font-size:18px;padding:18px 20px 6px}
+.compare th,.compare td{padding:12px 14px;border-top:1px solid var(--line)}
+.compare thead th{border-top:0;color:var(--purple-hi);font-size:13px;text-transform:uppercase;letter-spacing:.06em}
+.compare tbody th{text-align:left;font-weight:500;color:var(--text)}
+.compare .hl{background:rgba(108,60,225,.10)}
+.compare .no{color:var(--dim)}
 .intl b{color:var(--text)}
 
 /* signup */
@@ -204,7 +213,8 @@ select.input option{background:#14141F;color:var(--text)}
 .phone-row{display:grid;grid-template-columns:118px 1fr;gap:8px}
 .err-msg{font-size:13px;color:var(--err);min-height:0}
 .err-msg:empty{display:none}
-.plans-pick{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.plans-pick{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:640px){.plans-pick{grid-template-columns:1fr}}
 .plan-opt{position:relative;cursor:pointer}
 .plan-opt input{position:absolute;opacity:0;pointer-events:none}
 .plan-opt .box{display:flex;flex-direction:column;gap:2px;padding:14px 16px;border-radius:12px;border:1px solid var(--line-2);background:#0C0C14;transition:border-color .2s,background .2s,box-shadow .2s}
@@ -296,6 +306,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
   .cards-3,.steps{grid-template-columns:1fr}
   .steps{gap:44px}.steps::before{display:none}
   .pricing-grid{grid-template-columns:minmax(0,460px)}
+  .compare{font-size:14px}
   .plan.popular{order:-1}
 }
 @media (min-width:861px){.nav-links .mobile-cta{display:none}}
@@ -464,8 +475,14 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
       <article class="card feature reveal" style="--d:.08s"><div class="icon" aria-hidden="true">📊</div><h3>Smart Analytics</h3><p>Learns which posts and times work best for you, and improves over time.</p></article>
       <article class="card feature reveal" style="--d:.16s"><div class="icon" aria-hidden="true">💬</div><h3>Inbox Manager</h3><p>Spots leads and complaints in your comments automatically, so none slip by.</p></article>
       <article class="card feature reveal" style="--d:.0s"><div class="icon" aria-hidden="true">✅</div><h3>WhatsApp Approval</h3><p>Approve each post by replying YES on WhatsApp — or let it run on its own.</p></article>
-      <article class="card feature reveal" style="--d:.08s"><div class="icon" aria-hidden="true">🖼️</div><h3>AI Images</h3><p>Generates an image for each post automatically, using your own image AI key.</p></article>
+      <article class="card feature reveal" style="--d:.08s"><div class="icon" aria-hidden="true">🖼️</div><h3>AI Images &amp; Video</h3><p>An image with each post (Business), and 30-second AI videos (Creator) — all included.</p></article>
       <article class="card feature reveal" style="--d:.16s"><div class="icon" aria-hidden="true">🔄</div><h3>Auto-Updates</h3><p>New features install themselves every Monday. Nothing to download, ever.</p></article>
+      <article class="card feature reveal" style="--d:.0s"><div class="icon" aria-hidden="true">📚</div><h3>Content Brain</h3><p>Upload your catalogue, reviews, team. PostPilot posts from it forever.</p></article>
+      <article class="card feature reveal" style="--d:.08s"><div class="icon" aria-hidden="true">⚡</div><h3>Quick Post</h3><p>Post any offer or product in 30 seconds — from your phone.</p></article>
+      <article class="card feature reveal" style="--d:.16s"><div class="icon" aria-hidden="true">🗑️</div><h3>Delete any post</h3><p>Remove a post from all your platforms with one click (TikTok posts are removed in the TikTok app).</p></article>
+      <article class="card feature reveal" style="--d:.0s"><div class="icon" aria-hidden="true">⏸️</div><h3>Pause instantly</h3><p>Stop all posting with one WhatsApp message. Reply RESUME to restart.</p></article>
+      <article class="card feature reveal" style="--d:.08s"><div class="icon" aria-hidden="true">🎉</div><h3>Event countdowns</h3><p>An automatic series for your event, from the first announcement to the thank-you.</p></article>
+      <article class="card feature reveal" style="--d:.16s"><div class="icon" aria-hidden="true">🎠</div><h3>Carousel posts</h3><p>Multi-slide posts for LinkedIn and Instagram that people swipe through.</p></article>
     </div>
   </div>
 </section>
@@ -479,37 +496,80 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
     <div class="pricing-grid">
       <article class="card plan reveal" style="--d:.05s">
         <div class="plan-name">Starter</div>
-        <div class="price"><b>₹1,000</b><span>/month</span></div>
+        <div class="price"><b>₹1,499</b><span>/month</span></div>
         <p class="plan-desc">For shops getting started online.</p>
         <ul class="checks">
           <li>3 platforms <small>(LinkedIn, Facebook, Instagram)</small></li>
-          <li>1 post per day</li>
-          <li>English only</li>
-          <li>Basic analytics</li>
+          <li>~2 posts a day <small>(up to 15 a week)</small></li>
+          <li>English</li>
+          <li>Auto-posting on a ready-made weekly schedule</li>
+          <li>Content Brain + Quick Post</li>
+          <li>Daily WhatsApp Status content — image + caption ready every morning, one tap to post</li>
           <li>Email support</li>
         </ul>
         <a href="#signup" class="btn btn-ghost btn-block" data-plan="starter">Start Starter Plan</a>
       </article>
       <article class="card plan popular reveal" style="--d:.15s">
         <span class="ribbon">MOST POPULAR</span>
-        <div class="plan-name">Popular</div>
-        <div class="price"><b>₹2,999</b><span>/month</span></div>
+        <div class="plan-name">Business</div>
+        <div class="price"><b>₹3,999</b><span>/month</span></div>
         <p class="plan-desc">The full autopilot, in your customers' language.</p>
         <ul class="checks">
-          <li>All 7 platforms</li>
-          <li>5 posts per day</li>
+          <li>All 7 platforms <small>(+ X, Threads, Google Business, Telegram)</small></li>
+          <li>Up to 28 posts a week, on the days you choose</li>
           <li>All 8 Indian languages + English</li>
-          <li>AI image generation <small>(your own image AI key)</small></li>
-          <li>WhatsApp approval</li>
-          <li>A/B testing</li>
-          <li>Priority support</li>
-          <li>TikTok + Pinterest <small>(when your account is approved)</small></li>
+          <li>AI images with your posts</li>
+          <li>Content Brain + Quick Post</li>
+          <li>Daily WhatsApp Status content — image + caption ready every morning, one tap to post</li>
+          <li>Analytics, festival calendar, WhatsApp approval</li>
         </ul>
-        <a href="#signup" class="btn btn-primary btn-block" data-plan="popular">Start Popular Plan</a>
+        <a href="#signup" class="btn btn-primary btn-block" data-plan="business">Start Business Plan</a>
+      </article>
+      <article class="card plan reveal" style="--d:.25s">
+        <div class="plan-name">Creator</div>
+        <div class="price"><b>₹7,999</b><span>/month</span></div>
+        <p class="plan-desc">For brands that live on video.</p>
+        <ul class="checks">
+          <li>Everything in Business, incl. Content Brain + Quick Post</li>
+          <li>AI videos up to 30 seconds</li>
+          <li>Brand voice training on your past posts</li>
+          <li>TikTok + Pinterest <small>(TikTok once your account is approved)</small></li>
+          <li>Up to 49 posts a week</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#signup" class="btn btn-ghost btn-block" data-plan="creator">Start Creator Plan</a>
       </article>
     </div>
-    <p class="intl reveal">🌍 <b>International pricing available</b> — USD, GBP, AED, AUD, SGD. Choose your country code in the form and you'll pay by card in your currency.</p>
-    <p class="ai-note reveal"><b>AI usage is billed separately.</b> Posts are written with your own Anthropic (Claude) API key, so Anthropic bills you directly for what you use. Image generation works the same way with your own OpenAI or Stability AI key. The setup wizard walks you through creating them.</p>
+    <p class="all-ai reveal"><b>All AI included — no Anthropic, OpenAI or other API keys needed. One price, everything included.</b></p>
+    <p class="intl reveal">🌍 <b>International pricing available</b> — $18, $48 and $96 a month, or pay in GBP, AED, AUD or SGD. Choose your country code in the form and you'll pay by card in your currency.</p>
+
+    <div class="compare-wrap reveal">
+      <table class="compare">
+        <caption>Compare plans</caption>
+        <thead><tr><th scope="col">Feature</th><th scope="col">Starter</th><th scope="col" class="hl">Business</th><th scope="col">Creator</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Price</th><td>₹1,499/mo</td><td class="hl">₹3,999/mo</td><td>₹7,999/mo</td></tr>
+          <tr><th scope="row">LinkedIn, Facebook, Instagram</th><td>✓</td><td class="hl">✓</td><td>✓</td></tr>
+          <tr><th scope="row">X, Threads, Google Business, Telegram</th><td class="no">—</td><td class="hl">✓</td><td>✓</td></tr>
+          <tr><th scope="row">TikTok, Pinterest</th><td class="no">—</td><td class="hl no">—</td><td>✓</td></tr>
+          <tr><th scope="row">Posts per week</th><td>Up to 15</td><td class="hl">Up to 28</td><td>Up to 49</td></tr>
+          <tr><th scope="row">Choose your posting days</th><td class="no">—</td><td class="hl">✓</td><td>✓</td></tr>
+          <tr><th scope="row">Languages</th><td>English</td><td class="hl">8 Indian + English</td><td>8 Indian + English</td></tr>
+          <tr><th scope="row">AI-written posts</th><td>✓</td><td class="hl">✓</td><td>✓</td></tr>
+          <tr><th scope="row">Content Brain (catalogue, reviews, team, FAQ, events)</th><td>✓</td><td class="hl">✓</td><td>✓</td></tr>
+          <tr><th scope="row">Quick Post, delete any post, pause</th><td>✓</td><td class="hl">✓</td><td>✓</td></tr>
+          <tr><th scope="row">Carousel posts</th><td>✓</td><td class="hl">✓</td><td>✓</td></tr>
+          <tr><th scope="row">Two languages at once (per platform)</th><td class="no">—</td><td class="hl">✓</td><td>✓</td></tr>
+          <tr><th scope="row">AI images</th><td class="no">—</td><td class="hl">✓</td><td>✓</td></tr>
+          <tr><th scope="row">AI videos (up to 30 s)</th><td class="no">—</td><td class="hl no">—</td><td>✓</td></tr>
+          <tr><th scope="row">Brand voice training</th><td class="no">—</td><td class="hl no">—</td><td>✓</td></tr>
+          <tr><th scope="row">Analytics</th><td class="no">—</td><td class="hl">✓</td><td>✓</td></tr>
+          <tr><th scope="row">Festival calendar</th><td class="no">—</td><td class="hl">✓</td><td>✓</td></tr>
+          <tr><th scope="row">AI API keys needed</th><td>None</td><td class="hl">None</td><td>None</td></tr>
+          <tr><th scope="row">Support</th><td>Email</td><td class="hl">Email + WhatsApp</td><td>Priority</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
 
@@ -569,8 +629,9 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
         <fieldset class="field full" style="border:0">
           <legend class="legend" style="margin-bottom:7px">Plan</legend>
           <div class="plans-pick">
-            <label class="plan-opt"><input type="radio" name="plan" value="starter"><span class="box"><b>Starter</b><span>₹1,000/month · 3 platforms</span></span></label>
-            <label class="plan-opt"><input type="radio" name="plan" value="popular" checked><span class="box"><b>Popular</b><span>₹2,999/month · all 7 + languages</span></span></label>
+            <label class="plan-opt"><input type="radio" name="plan" value="starter"><span class="box"><b>Starter</b><span>₹1,499/month · 3 platforms</span></span></label>
+            <label class="plan-opt"><input type="radio" name="plan" value="business" checked><span class="box"><b>Business</b><span>₹3,999/month · 7 platforms + images</span></span></label>
+            <label class="plan-opt"><input type="radio" name="plan" value="creator"><span class="box"><b>Creator</b><span>₹7,999/month · + AI videos</span></span></label>
           </div>
         </fieldset>
         <div class="field full">
@@ -624,11 +685,11 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
     <div class="faq-list" id="faq-list">
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false" aria-controls="a1" id="q1">Do I need to know anything about social media?<span class="plus" aria-hidden="true"></span></button>
-        <div class="faq-a" id="a1" role="region" aria-labelledby="q1"><div><p>No — PostPilot handles everything automatically: topics, writing, images, hashtags and posting times. The only extra thing you need is an Anthropic (Claude) API key for the AI writing, billed by Anthropic based on your usage; the setup wizard shows you how to get one.</p></div></div>
+        <div class="faq-a" id="a1" role="region" aria-labelledby="q1"><div><p>No — PostPilot handles everything automatically: topics, writing, images, hashtags and posting times. All the AI is included in your plan — you don't need an Anthropic, OpenAI or any other API key.</p></div></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false" aria-controls="a2" id="q2">Which platforms does PostPilot post to?<span class="plus" aria-hidden="true"></span></button>
-        <div class="faq-a" id="a2" role="region" aria-labelledby="q2"><div><p>LinkedIn, Instagram, Facebook, X (Twitter), Threads, Google Business Profile, and Telegram. TikTok and Pinterest are also supported when your account is approved.</p></div></div>
+        <div class="faq-a" id="a2" role="region" aria-labelledby="q2"><div><p>Starter: LinkedIn, Instagram and Facebook. Business adds X (Twitter), Threads, Google Business Profile and Telegram. Creator adds TikTok (once TikTok approves your account) and Pinterest.</p></div></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false" aria-controls="a3" id="q3">What happens after I pay?<span class="plus" aria-hidden="true"></span></button>
@@ -636,7 +697,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false" aria-controls="a4" id="q4">Can I approve posts before they go live?<span class="plus" aria-hidden="true"></span></button>
-        <div class="faq-a" id="a4" role="region" aria-labelledby="q4"><div><p>Yes — on the Popular plan, PostPilot sends you a WhatsApp message for each post. Reply YES to approve, NO to reject.</p></div></div>
+        <div class="faq-a" id="a4" role="region" aria-labelledby="q4"><div><p>Yes — approve or reject each post in your dashboard, or on the Business and Creator plans by WhatsApp: reply YES to approve, NO to reject.</p></div></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false" aria-controls="a5" id="q5">What if I want to cancel?<span class="plus" aria-hidden="true"></span></button>
@@ -644,7 +705,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false" aria-controls="a6" id="q6">Is my data safe?<span class="plus" aria-hidden="true"></span></button>
-        <div class="faq-a" id="a6" role="region" aria-labelledby="q6"><div><p>Yes. Your social media tokens stay on your own computer — they are never sent to or stored on our servers.</p></div></div>
+        <div class="faq-a" id="a6" role="region" aria-labelledby="q6"><div><p>Yes. Accounts you connect in the browser are stored encrypted on our server, and only your PostPilot can fetch them. Your posts are written by our AI service on our servers; nothing is shared with other customers.</p></div></div>
       </div>
     </div>
   </div>
@@ -862,7 +923,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
       email: $("#f-email").value.trim().toLowerCase(),
       phone: normalisePhone(cc, $("#f-phone").value),
       niche: $("#f-type").value,
-      plan: ($('input[name="plan"]:checked') || {}).value || "popular",
+      plan: ($('input[name="plan"]:checked') || {}).value || "business",
       coupon: $("#f-coupon").value.trim().toUpperCase(),
       tc1: true, tc2: true, tc3: true,
       source: "website"

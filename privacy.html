@@ -93,7 +93,7 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap}
 <li><strong>Support messages</strong> you send us by email or WhatsApp.</li>
 </ul>
 <h3>What stays on your computer</h3>
-<p>The PostPilot software runs on your own computer. Your social media access tokens, your AI provider API keys, your post history, analytics and drafts are stored there in local files. <strong>They are not sent to our servers.</strong> Keep that computer secure — anyone who can access its files can access these tokens.</p>
+<p>The PostPilot software runs on your own computer. Your post history, analytics, drafts and any social media tokens you enter yourself are stored there in local files and are not sent to our servers. Keep that computer secure — anyone who can access its files can access these tokens.</p>
 <h3>On this website</h3>
 <p>This website uses no analytics, advertising or tracking cookies. Fonts are loaded from Google Fonts, which receives your IP address when your browser fetches them. The site is hosted on GitHub Pages, which may keep standard server logs.</p>
 
@@ -119,9 +119,12 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap}
 <tr><td>Meta (WhatsApp Business)</td><td>Sending licence keys, payment links and reminders</td></tr>
 <tr><td>Our email provider</td><td>Sending emails</td></tr>
 <tr><td>Google (Gemini)</td><td>Drafting automatic replies to support emails</td></tr>
+<tr><td>Anthropic (Claude)</td><td>Writing your posts, WhatsApp Status captions and brand voice analysis</td></tr>
+<tr><td>OpenAI (DALL-E 3)</td><td>AI images (Business and Creator plans)</td></tr>
+<tr><td>Kling AI</td><td>AI videos (Creator plan)</td></tr>
 <tr><td>GitHub</td><td>Hosting this website and software updates</td></tr>
 </tbody></table></div>
-<p>The AI that writes your posts (Anthropic Claude, with Google Gemini as a fallback) and any image AI (OpenAI or Stability AI) are called directly <strong>from your computer using your own API keys</strong>. Your business details and post text go to those providers under your own account with them, not ours.</p>
+<p>The AI is included in your plan and runs on our server: to write a post, image or video, PostPilot sends our server the instructions for it (your business name and type, the topic, your language and writing style, and for brand voice training the past posts you paste in). Our server passes them to Anthropic (Claude) for text, OpenAI (DALL-E 3) for images and Kling AI for videos under our accounts with them, and records each request and its cost. Older installs that still hold their own AI key use it only if our server cannot be reached.</p>
 <p>The social platforms you connect (LinkedIn, Instagram, Facebook, X, Threads, Google Business Profile, Telegram and others) receive the posts you publish, under their own terms and privacy policies.</p>
 <p>We may also disclose data where the law requires it.</p>
 
