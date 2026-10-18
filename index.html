@@ -235,6 +235,8 @@ select.input option{background:#14141F;color:var(--text)}
 .result.err{background:rgba(255,107,122,.08);border:1px solid rgba(255,107,122,.4);color:var(--err)}
 .result.info{background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.3);color:#BDF3FF}
 .result .btn{margin-top:14px}
+.result .pending{display:flex;align-items:center;gap:10px}
+.result .pending .spinner{flex-shrink:0;border-color:rgba(189,243,255,.3);border-top-color:#BDF3FF}
 
 /* languages */
 .langs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px}
@@ -906,6 +908,16 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
     if (typeof html === "string") result.textContent = html; else result.appendChild(html);
   }
 
+  // "Sending…" with a spinner; the reassurance about a slow start only if it really is slow
+  var SLOW_AFTER = 8000;
+  function pending(text) {
+    var row = document.createElement("div"); row.className = "pending"; row.setAttribute("role", "status");
+    var spin = document.createElement("span"); spin.className = "spinner"; spin.setAttribute("aria-hidden", "true");
+    var label = document.createElement("span"); label.textContent = text;
+    row.appendChild(spin); row.appendChild(label);
+    show("info", row);
+  }
+
   function setLoading(on) {
     submitBtn.disabled = on;
     submitBtn.innerHTML = on ? '<span class="spinner" aria-hidden="true"></span> Sending…' : "Get My Payment Link →";
@@ -930,11 +942,12 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
     };
 
     setLoading(true);
+    pending("Sending your details…");
     var controller = "AbortController" in window ? new AbortController() : null;
     var timeout = setTimeout(function () { if (controller) controller.abort(); }, REQUEST_TIMEOUT);
     var slow = setTimeout(function () {
-      show("info", "Waking up our server — the first request can take up to a minute. Please keep this page open…");
-    }, 6000);
+      pending("This is taking longer than usual — our server may be starting up, please wait…");
+    }, SLOW_AFTER);
 
     fetch(API_BASE + "/signup", {
       method: "POST",
@@ -947,7 +960,15 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
         return res.json().catch(function () { return {}; }).then(function (data) { return { res: res, data: data }; });
       })
       .then(function (r) {
+        clearTimeout(slow);                          // answered: the slow-start message never appears now
         var data = r.data || {};
+        if (r.res.ok && data.success && data.free) {
+          // A coupon made it free: the license is already active and on its way by email / WhatsApp
+          show("ok", data.message || "🎉 Your free month is active! Your license key has been sent to your email.");
+          form.reset();
+          $('input[name="plan"][value="' + payload.plan + '"]').checked = true;
+          return;
+        }
         if (r.res.ok && data.success) {
           // International (Stripe): go straight to the secure checkout page
           if (data.provider === "stripe" && /^https:\/\/checkout\.stripe\.com\//.test(data.checkout_url || "")) {
@@ -974,7 +995,8 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
       })
       .catch(function (err) {
         show("err", err && err.name === "AbortError"
-          ? "Our server took too long to respond. Please try again in a moment."
+          ? "Our server took too long to answer, but your signup may still have gone through. " +
+            "Please check your email and WhatsApp before trying again."
           : "We couldn't reach our server. Check your internet connection and try again — or message us on WhatsApp.");
       })
       .then(function () { clearTimeout(timeout); clearTimeout(slow); setLoading(false); });
