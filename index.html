@@ -763,6 +763,10 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
   var WHATSAPP_TEXT   = "Hi, I want to know more about PostPilot";
   var REQUEST_TIMEOUT = 75000;                  // Render free instances can take ~1 min to wake
 
+  // Wake the server while the visitor reads the page (Render's free plan sleeps after 15 min),
+  // so the signup form gets a quick answer
+  try { fetch(API_BASE + "/ping", { cache: "no-store" }).catch(function () {}); } catch (e) {}
+
   var $ = function (s, el) { return (el || document).querySelector(s); };
   var $$ = function (s, el) { return Array.prototype.slice.call((el || document).querySelectorAll(s)); };
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
