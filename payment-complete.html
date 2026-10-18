@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Thank you — Zyps PostPilot</title>
+<title>Payment successful — Zyps PostPilot</title>
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0A0A0F">
 <meta name="color-scheme" content="dark">
@@ -14,7 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--purple:#6C3CE1;--purple-hi:#9B7BFF;--blue:#00D4FF;--bg:#0A0A0F;--card:#14141F;--line:rgba(255,255,255,.08);--line-2:rgba(255,255,255,.14);
-  --text:#F4F2FF;--muted:#A8A3C2;--dim:#7D7899;--ok:#3DDC97;--warn:#FFB547;--wa:#25D366;--grad:linear-gradient(135deg,#6C3CE1 0%,#8B5CF6 45%,#00D4FF 100%)}
+  --text:#F4F2FF;--muted:#A8A3C2;--dim:#7D7899;--ok:#3DDC97;--err:#FF6B7A;--warn:#FFB547;--wa:#25D366;--grad:linear-gradient(135deg,#6C3CE1 0%,#8B5CF6 45%,#00D4FF 100%)}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;
@@ -33,21 +33,28 @@ main{flex:1;display:flex;align-items:center;padding:32px 0 56px}
 .icon.ok{background:rgba(61,220,151,.12);border-color:rgba(61,220,151,.35)}
 .big{font-size:64px;font-weight:800;letter-spacing:-.04em;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:10px}
 h1{font-size:clamp(26px,5vw,34px);line-height:1.2;letter-spacing:-.02em;margin-bottom:10px}
-.lead{color:var(--muted);font-size:16.5px;max-width:520px;margin:0 auto}
-.steps{text-align:left;max-width:460px;margin:26px auto 0;list-style:none;display:grid;gap:12px;counter-reset:s}
-.steps li{position:relative;padding-left:40px;color:var(--muted)}
-.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;background:var(--purple);color:#fff}
-.steps strong{color:var(--text)}
-.note{margin-top:22px;padding:14px 16px;border-radius:14px;background:rgba(255,181,71,.08);border:1px solid rgba(255,181,71,.25);color:#F3DDB6;font-size:14.5px;text-align:left}
-.actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:28px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:12px;font-weight:600;text-decoration:none;font-size:15.5px}
+.lead{color:var(--muted);font-size:16px;max-width:460px;margin:0 auto}
+.form{max-width:420px;margin:26px auto 0;text-align:left}
+label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:8px;letter-spacing:.02em}
+input{width:100%;padding:15px 16px;border-radius:12px;border:1px solid var(--line-2);background:#0F0F18;color:var(--text);
+  font:600 17px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.06em;text-transform:uppercase}
+input::placeholder{color:#5D5878;letter-spacing:.04em}
+input:focus{outline:none;border-color:var(--purple-hi);box-shadow:0 0 0 3px rgba(155,123,255,.25)}
+input[aria-invalid="true"]{border-color:var(--err)}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:14px;padding:15px 22px;border:0;border-radius:12px;
+  font:700 16.5px/1 Inter,system-ui,sans-serif;cursor:pointer;text-decoration:none}
 .btn-primary{background:var(--purple);color:#fff;box-shadow:0 10px 30px -10px rgba(108,60,225,.8)}
-.btn-ghost{border:1px solid var(--line-2);color:var(--text)}
-.btn-wa{background:var(--wa);color:#0A0A0F}
+.btn-primary:disabled{opacity:.75;cursor:wait}
+.spinner{width:18px;height:18px;border-radius:50%;border:2.5px solid rgba(255,255,255,.35);border-top-color:#fff;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.msg{margin-top:12px;font-size:14.5px;min-height:1em}
+.msg.err{color:var(--err)} .msg.info{color:#BDF3FF}
+.help{text-align:center;margin-top:20px;font-size:14.5px;color:var(--muted)}
+.help a{color:var(--wa);font-weight:600;text-decoration:none}
 footer{border-top:1px solid var(--line);padding:22px 0;color:var(--dim);font-size:13.5px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between}
 footer a{color:var(--muted);text-decoration:none}
-@media (max-width:520px){.card{padding:32px 20px}.btn{width:100%}}
+@media (max-width:520px){.card{padding:32px 20px}input{font-size:15px;letter-spacing:.01em;padding:14px 12px}}
 </style>
 </head>
 <body>
@@ -56,29 +63,82 @@ footer a{color:var(--muted);text-decoration:none}
 </div></header>
 <main><div class="wrap"><div class="card">
   <div class="icon ok" aria-hidden="true">✅</div>
-  <h1>Thank you!</h1>
-  <p class="lead" id="lead">If your payment went through, your PostPilot license is being activated now.</p>
-  <ol class="steps">
-    <li><strong>Check your email</strong> (and WhatsApp) — your license key arrives within 2 minutes. Look in Spam/Promotions too.</li>
-    <li><strong><a href="/download.html">Download PostPilot</a></strong> and run the setup wizard — paste your license key when it asks.</li>
-    <li><strong>Connect your accounts</strong> — posting starts the next morning.</li>
-  </ol>
-  <p class="note">Payment didn't go through? Nothing was charged. Open the payment link in your email or WhatsApp again to retry — it stays valid for 48 hours.</p>
-  <div class="actions">
-    <a class="btn btn-wa" href="https://wa.me/918350983181?text=Hi%2C%20I%20need%20help%20with%20my%20PostPilot%20payment" target="_blank" rel="noopener">Need help? WhatsApp us</a>
-    <a class="btn btn-ghost" href="/">Back to home</a>
-  </div>
-  <script>
-    // Stripe only sends people here after a successful checkout
-    if (new URLSearchParams(location.search).get("provider") === "stripe") {
-      document.getElementById("lead").textContent = "Your payment went through and your PostPilot license is being activated now.";
-      var n = document.querySelector(".note"); if (n) n.remove();
-    }
-  </script>
+  <h1>Payment successful! 🎉</h1>
+  <p class="lead">Your license key has been sent to your email and WhatsApp. It may take up to 2 minutes to arrive.</p>
+  <form class="form" id="key-form" novalidate>
+    <label for="key">Your license key</label>
+    <input id="key" name="key" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false"
+           placeholder="ZYPS-PPLT-XXXX-XXXX-XXXX-YYYY" aria-describedby="msg" required>
+    <button class="btn btn-primary" id="go" type="submit">Activate My Account →</button>
+    <p class="msg" id="msg" role="status" aria-live="polite"></p>
+  </form>
+  <p class="help">Didn't receive your key? <a href="https://wa.me/918350983181" target="_blank" rel="noopener">WhatsApp us</a></p>
 </div></div></main>
 <footer><div class="wrap">
   <span>© 2026 Zyps, a Quality Group venture.</span>
   <span><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="mailto:zypsapp@gmail.com">zypsapp@gmail.com</a></span>
 </div></footer>
+<script>
+(function () {
+  "use strict";
+  var SERVER = "https://zyps-postpilot-server.onrender.com";
+  var form = document.getElementById("key-form"), input = document.getElementById("key"),
+      btn = document.getElementById("go"), msg = document.getElementById("msg");
+  var LABEL = btn.textContent;
+
+  // Wake the server now (Render's free plan sleeps): by the time the key arrives, it's up
+  try { fetch(SERVER + "/ping", { cache: "no-store" }).catch(function () {}); } catch (e) {}
+
+  var fromUrl = new URLSearchParams(location.search).get("key");
+  if (fromUrl) input.value = fromUrl;
+
+  function clean(v) { return String(v || "").toUpperCase().replace(/[^A-Z0-9-]/g, ""); }
+  function showError(text) { msg.className = "msg err"; msg.textContent = text; input.setAttribute("aria-invalid", "true"); input.focus(); }
+  function loading(on) {
+    btn.disabled = on;
+    btn.innerHTML = on ? '<span class="spinner" aria-hidden="true"></span> Checking your key…' : "";
+    if (!on) btn.textContent = LABEL;
+  }
+  function post(key) {
+    return fetch(SERVER + "/api/validate-key", {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ key: key })
+    }).then(function (r) { return r.json(); });
+  }
+  // A sleeping server answers with Render's loading page first: retry for up to ~90 s
+  function validate(key, started) {
+    return post(key).catch(function (err) {
+      if (Date.now() - started > 90000) throw err;
+      msg.className = "msg info"; msg.textContent = "Our server is starting up — this can take up to a minute…";
+      return new Promise(function (res) { setTimeout(res, 3000); }).then(function () { return validate(key, started); });
+    });
+  }
+
+  input.addEventListener("input", function () { input.removeAttribute("aria-invalid"); msg.textContent = ""; });
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var licenseKey = clean(input.value);
+    if (!/^ZYPS-[A-Z0-9]+(-[A-Z0-9]+){2,}$/.test(licenseKey)) {
+      return showError("That doesn't look like a license key. It starts with ZYPS- — copy it from your email or WhatsApp.");
+    }
+    input.value = licenseKey;
+    msg.textContent = ""; loading(true);
+    validate(licenseKey, Date.now())
+      .then(function (data) {
+        if (data.valid) {
+          msg.className = "msg info"; msg.textContent = "✓ Welcome" + (data.client_name ? ", " + data.client_name : "") + "! Opening your account…";
+          window.location.href = SERVER + "/connect?key=" + encodeURIComponent(licenseKey);
+          return;
+        }
+        loading(false);
+        showError(data.error && /Too many/.test(data.error) ? data.error
+                  : "License key not found. Check your email or WhatsApp us.");
+      })
+      .catch(function () {
+        loading(false);
+        showError("We couldn't reach our server. Check your connection and try again — or WhatsApp us.");
+      });
+  });
+})();
+</script>
 </body>
 </html>

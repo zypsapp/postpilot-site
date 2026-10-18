@@ -982,7 +982,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
           }
           var box = document.createElement("div");
           var msg = document.createElement("p");
-          msg.textContent = "✅ Payment link sent to your WhatsApp and email! Complete payment to activate your account.";
+          msg.textContent = "✅ Your payment link has been sent! Complete the payment and you'll be brought back here automatically.";
           box.appendChild(msg);
           if (/^(https:|upi:)/i.test(data.pay_url || "")) {
             var a = document.createElement("a");
