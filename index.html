@@ -927,6 +927,22 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
     submitBtn.innerHTML = on ? '<span class="spinner" aria-hidden="true"></span> Sending…' : "Get My Payment Link →";
   }
 
+  // Referral links (postpilot.zypsapp.com/?ref=AB12CD34): remembered for 30 days on this browser
+  var REF_KEY = "pp_ref";
+  (function () {
+    var ref = (new URLSearchParams(location.search).get("ref") || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+    try {
+      if (ref.length === 8) localStorage.setItem(REF_KEY, JSON.stringify({ code: ref, at: Date.now() }));
+    } catch (err) {}
+  })();
+  function referralCode() {
+    try {
+      var saved = JSON.parse(localStorage.getItem(REF_KEY) || "null");
+      if (saved && saved.code && Date.now() - saved.at < 30 * 24 * 3600 * 1000) return saved.code;
+    } catch (err) {}
+    return "";
+  }
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     result.className = "result";
@@ -941,6 +957,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
       niche: $("#f-type").value,
       plan: ($('input[name="plan"]:checked') || {}).value || "business",
       coupon: $("#f-coupon").value.trim().toUpperCase(),
+      ref: referralCode(),
       tc1: true, tc2: true, tc3: true,
       source: "website"
     };
