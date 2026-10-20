@@ -278,6 +278,13 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
 .wa-float svg{width:30px;height:30px}
 .wa-float::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--wa);animation:ring 2.4s ease-out infinite}
 
+/* testimonials */
+.quote{margin:0;text-align:left;display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+.quote blockquote{font-size:16.5px;line-height:1.6;color:var(--text)}
+.quote figcaption{display:flex;align-items:center;gap:12px}
+.quote .avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:14px;background:var(--grad);color:#fff;flex:none}
+.quote figcaption b{display:block;font-size:15px}.quote figcaption small{color:var(--muted);font-size:13.5px}
+
 /* reveal */
 .js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
 .js .reveal.in{opacity:1;transform:none}
@@ -323,6 +330,17 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
   .hero-ctas .btn{width:100%}
   .chip-b{left:4px}
   .cta-box{padding:44px 20px}
+}
+.hero-grid > *{min-width:0}
+@media (max-width:420px){
+  .mock{max-width:100%;min-width:0}.mock-inner{padding:14px}.mock-inner *{min-width:0;overflow-wrap:anywhere}
+  .plan{padding:28px 20px}
+  .price b{font-size:40px}
+  .price{flex-wrap:wrap}
+  .checks li{font-size:15px;padding-left:28px}
+  .ribbon{font-size:11.5px;padding:5px 12px}
+  .faq-q{padding:18px 16px;font-size:15.5px}
+  .faq-a p{padding:0 16px 18px}
 }
 @media (prefers-reduced-motion:reduce){
   .plats li{animation:none;opacity:1;transform:none}
@@ -447,18 +465,18 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
     <div class="steps">
       <div class="step reveal" style="--d:.05s">
         <div class="step-num"><b>1</b><span aria-hidden="true">🔗</span></div>
-        <h3>Connect your accounts</h3>
-        <p>Link LinkedIn, Instagram, Facebook and more with the setup wizard — each step has a guide.</p>
+        <h3>Connect</h3>
+        <p>Enter your license key and link LinkedIn, Instagram, Facebook and more in your browser — about 2 minutes, a guide for each.</p>
       </div>
       <div class="step reveal" style="--d:.15s">
         <div class="step-num"><b>2</b><span aria-hidden="true">🏪</span></div>
-        <h3>Tell us your business</h3>
-        <p>Your niche, your tone, your language. PostPilot learns your style from what you approve.</p>
+        <h3>Configure</h3>
+        <p>Your business, tone, languages and posting days. Add your catalogue and reviews — PostPilot learns your style from what you approve.</p>
       </div>
       <div class="step reveal" style="--d:.25s">
         <div class="step-num"><b>3</b><span aria-hidden="true">🚀</span></div>
-        <h3>PostPilot posts every day</h3>
-        <p>Fresh, on-brand posts go out at your best times — festivals included, every year.</p>
+        <h3>Post automatically</h3>
+        <p>Fresh, on-brand posts go out at your best times — you approve on WhatsApp, or let confident posts publish themselves.</p>
       </div>
     </div>
   </div>
@@ -679,6 +697,32 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
   </div>
 </section>
 
+<!-- ═════════ TESTIMONIALS ═════════
+     Hidden until real customers agree to be quoted. The three cards below are SAMPLES for the
+     layout only — replace each quote, name and business with a real one (with the customer's written
+     permission), then remove the "hidden" attribute on the section. Publishing invented reviews is a
+     misleading advertisement under the Consumer Protection Act and the ASCI Code. -->
+<section id="testimonials" class="testimonials" aria-labelledby="testimonials-h" hidden>
+  <div class="wrap center">
+    <span class="eyebrow reveal">Customers</span>
+    <h2 id="testimonials-h" class="reveal">Small businesses, <span class="grad-text">posting every day</span></h2>
+    <div class="cards-3">
+      <figure class="card quote reveal" style="--d:.05s" data-sample="true">
+        <blockquote>“SAMPLE — I used to post twice a month. Now our sweets are on Instagram every morning, and Diwali orders came in on WhatsApp.”</blockquote>
+        <figcaption><span class="avatar" aria-hidden="true">AB</span><span><b>Customer name</b><small>Sweet shop · City</small></span></figcaption>
+      </figure>
+      <figure class="card quote reveal" style="--d:.15s" data-sample="true">
+        <blockquote>“SAMPLE — The posts sound like us, in Marathi and English. I approve them on WhatsApp in under a minute.”</blockquote>
+        <figcaption><span class="avatar" aria-hidden="true">CD</span><span><b>Customer name</b><small>Clinic · City</small></span></figcaption>
+      </figure>
+      <figure class="card quote reveal" style="--d:.25s" data-sample="true">
+        <blockquote>“SAMPLE — Our Google Business profile finally looks alive. New customers say they found us there.”</blockquote>
+        <figcaption><span class="avatar" aria-hidden="true">EF</span><span><b>Customer name</b><small>Boutique · City</small></span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <!-- ═════════ FAQ ═════════ -->
 <section id="faq" aria-labelledby="faq-h">
   <div class="wrap center">
@@ -686,28 +730,36 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
     <h2 id="faq-h" class="reveal">Questions, <span class="grad-text">answered</span></h2>
     <div class="faq-list" id="faq-list">
       <div class="faq-item reveal">
-        <button class="faq-q" aria-expanded="false" aria-controls="a1" id="q1">Do I need to know anything about social media?<span class="plus" aria-hidden="true"></span></button>
-        <div class="faq-a" id="a1" role="region" aria-labelledby="q1"><div><p>No — PostPilot handles everything automatically: topics, writing, images, hashtags and posting times. All the AI is included in your plan — you don't need an Anthropic, OpenAI or any other API key.</p></div></div>
+        <button class="faq-q" aria-expanded="false" aria-controls="a1" id="q1">Which platforms does PostPilot post to?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a" id="a1" role="region" aria-labelledby="q1"><div><p>Starter: LinkedIn, Instagram and Facebook. Business adds X (Twitter), Threads, Google Business Profile and Telegram. Creator adds TikTok (once TikTok approves your account) and Pinterest. Every plan also gets a ready-made WhatsApp Status image and caption each morning.</p></div></div>
       </div>
       <div class="faq-item reveal">
-        <button class="faq-q" aria-expanded="false" aria-controls="a2" id="q2">Which platforms does PostPilot post to?<span class="plus" aria-hidden="true"></span></button>
-        <div class="faq-a" id="a2" role="region" aria-labelledby="q2"><div><p>Starter: LinkedIn, Instagram and Facebook. Business adds X (Twitter), Threads, Google Business Profile and Telegram. Creator adds TikTok (once TikTok approves your account) and Pinterest.</p></div></div>
+        <button class="faq-q" aria-expanded="false" aria-controls="a2" id="q2">How much does it cost, and what's included?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a" id="a2" role="region" aria-labelledby="q2"><div><p>Starter ₹1,499, Business ₹3,999 and Creator ₹7,999 a month, GST included — with a GST invoice emailed after every payment. All the AI (posts, images, videos) is included: no Anthropic, OpenAI or other API keys. Your license key arrives by email and WhatsApp within 2 minutes of paying.</p></div></div>
       </div>
       <div class="faq-item reveal">
-        <button class="faq-q" aria-expanded="false" aria-controls="a3" id="q3">What happens after I pay?<span class="plus" aria-hidden="true"></span></button>
-        <div class="faq-a" id="a3" role="region" aria-labelledby="q3"><div><p>You receive a license key by email and WhatsApp within 2 minutes. Run the setup wizard, connect your accounts, and PostPilot starts posting the next morning.</p></div></div>
+        <button class="faq-q" aria-expanded="false" aria-controls="a3" id="q3">Is there a free trial?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a" id="a3" role="region" aria-labelledby="q3"><div><p>There's no free trial: you pay for the first month, and you can cancel any time so you're never charged again. Now and then we run launch coupons — if you have one, enter it in the signup form.</p></div></div>
       </div>
       <div class="faq-item reveal">
-        <button class="faq-q" aria-expanded="false" aria-controls="a4" id="q4">Can I approve posts before they go live?<span class="plus" aria-hidden="true"></span></button>
-        <div class="faq-a" id="a4" role="region" aria-labelledby="q4"><div><p>Yes — approve or reject each post in your dashboard, or on the Business and Creator plans by WhatsApp: reply YES to approve, NO to reject.</p></div></div>
+        <button class="faq-q" aria-expanded="false" aria-controls="a4" id="q4">Is my data safe?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a" id="a4" role="region" aria-labelledby="q4"><div><p>Yes. The social accounts you connect are stored encrypted on our server and only your own PostPilot can use them. Your posts and business details are never shared with other customers.</p></div></div>
       </div>
       <div class="faq-item reveal">
-        <button class="faq-q" aria-expanded="false" aria-controls="a5" id="q5">What if I want to cancel?<span class="plus" aria-hidden="true"></span></button>
-        <div class="faq-a" id="a5" role="region" aria-labelledby="q5"><div><p>Email us at <a href="mailto:zypsapp@gmail.com" style="color:var(--purple-hi)">zypsapp@gmail.com</a> and we cancel immediately. No questions asked.</p></div></div>
+        <button class="faq-q" aria-expanded="false" aria-controls="a5" id="q5">Are you DPDP Act compliant? Can I delete my data?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a" id="a5" role="region" aria-labelledby="q5"><div><p>Yes. Under India's Digital Personal Data Protection Act, 2023, you can download everything we hold about you (dashboard → Settings → Account → Export my data) or delete your account yourself, any time — even after your plan ends. We keep only what tax law requires: your invoices. Details are in our <a href='/privacy.html#erasure' style='color:var(--purple-hi)'>Privacy Policy</a>.</p></div></div>
       </div>
       <div class="faq-item reveal">
-        <button class="faq-q" aria-expanded="false" aria-controls="a6" id="q6">Is my data safe?<span class="plus" aria-hidden="true"></span></button>
-        <div class="faq-a" id="a6" role="region" aria-labelledby="q6"><div><p>Yes. Accounts you connect in the browser are stored encrypted on our server, and only your PostPilot can fetch them. Your posts are written by our AI service on our servers; nothing is shared with other customers.</p></div></div>
+        <button class="faq-q" aria-expanded="false" aria-controls="a6" id="q6">How good are the AI-written posts?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a" id="a6" role="region" aria-labelledby="q6"><div><p>They're written for your business from your catalogue, reviews, offers and tone, in your language. Every post is scored for confidence — prices, numbers and names are checked against what you told PostPilot — and anything it isn't sure about waits for your approval. You can add your own rules too, like “never mention competitors”.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false" aria-controls="a7" id="q7">How do I cancel?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a" id="a7" role="region" aria-labelledby="q7"><div><p>Email <a href='mailto:zypsapp@gmail.com' style='color:var(--purple-hi)'>zypsapp@gmail.com</a> from your account email and we cancel immediately — you won't be charged again. No questions asked. Going away for a while? Pause your subscription from the dashboard instead (up to 15 days, 3 times a year) and your plan is extended by the days you paused.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false" aria-controls="a8" id="q8">How does WhatsApp approval work?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a" id="a8" role="region" aria-labelledby="q8"><div><p>When a post is ready, PostPilot sends it to your WhatsApp. Reply YES to publish it or NO to skip it. You can also approve in the dashboard, or switch on auto-publishing for posts PostPilot is confident about — then you just get a note when they go out.</p></div></div>
       </div>
     </div>
   </div>
