@@ -193,6 +193,17 @@ h2{font-size:clamp(30px,4.6vw,46px);margin:14px 0 16px}
 .compare .hl{background:rgba(108,60,225,.10)}
 .compare .no{color:var(--dim)}
 .intl b{color:var(--text)}
+/* monthly / annual toggle */
+.billing-toggle{display:inline-flex;gap:4px;margin-top:30px;padding:5px;border-radius:999px;background:var(--card,#14141F);border:1px solid var(--line-2)}
+.billing-toggle button{border:0;background:transparent;color:var(--muted);font:inherit;font-weight:600;font-size:15px;padding:10px 20px;border-radius:999px;cursor:pointer;min-height:44px;display:inline-flex;align-items:center;gap:8px}
+.billing-toggle button[aria-checked="true"]{background:var(--grad);color:#fff}
+.free-badge{display:inline-block;background:rgba(34,197,94,.16);color:#4ADE80;border:1px solid rgba(74,222,128,.45);font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.02em;white-space:nowrap}
+.billing-toggle button[aria-checked="true"] .free-badge{background:#16A34A;color:#fff;border-color:#16A34A}
+.annual-only{display:none}
+.is-annual .annual-only{display:block}
+.is-annual .monthly-only{display:none}
+.annual-note{margin:-2px 0 8px;font-size:14px;color:var(--muted)}
+.save{color:#4ADE80;font-weight:700}
 
 /* signup */
 .signup{background:linear-gradient(180deg,transparent,rgba(0,212,255,.04) 30%,rgba(108,60,225,.08) 70%,transparent)}
@@ -513,10 +524,16 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
     <span class="eyebrow reveal">Pricing</span>
     <h2 id="pricing-h" class="reveal">Simple pricing. <span class="grad-text">Cancel anytime.</span></h2>
     <p class="lead reveal">Less than a day's wages for a social media assistant — every month.</p>
-    <div class="pricing-grid">
+    <div class="billing-toggle reveal" role="radiogroup" aria-label="Billing period">
+      <button type="button" role="radio" aria-checked="true" data-cycle="monthly">Monthly</button>
+      <button type="button" role="radio" aria-checked="false" data-cycle="annual">Annual <span class="free-badge">2 months FREE</span></button>
+    </div>
+    <div class="pricing-grid" id="pricingGrid">
       <article class="card plan reveal" style="--d:.05s">
         <div class="plan-name">Starter</div>
-        <div class="price"><b>₹1,499</b><span>/month</span></div>
+        <div class="price monthly-only"><b>₹1,499</b><span>/month</span></div>
+        <div class="annual-only"><div class="price"><b>₹14,990</b><span>/year</span></div>
+          <p class="annual-note">₹1,249/month · <span class="save">Save ₹2,998</span> · <span class="free-badge">2 months FREE</span></p></div>
         <p class="plan-desc">For shops getting started online.</p>
         <ul class="checks">
           <li>3 platforms <small>(LinkedIn, Facebook, Instagram)</small></li>
@@ -532,7 +549,9 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
       <article class="card plan popular reveal" style="--d:.15s">
         <span class="ribbon">MOST POPULAR</span>
         <div class="plan-name">Business</div>
-        <div class="price"><b>₹3,999</b><span>/month</span></div>
+        <div class="price monthly-only"><b>₹3,999</b><span>/month</span></div>
+        <div class="annual-only"><div class="price"><b>₹39,990</b><span>/year</span></div>
+          <p class="annual-note">₹3,332/month · <span class="save">Save ₹7,998</span> · <span class="free-badge">2 months FREE</span></p></div>
         <p class="plan-desc">The full autopilot, in your customers' language.</p>
         <ul class="checks">
           <li>All 7 platforms <small>(+ X, Threads, Google Business, Telegram)</small></li>
@@ -547,7 +566,9 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
       </article>
       <article class="card plan reveal" style="--d:.25s">
         <div class="plan-name">Creator</div>
-        <div class="price"><b>₹7,999</b><span>/month</span></div>
+        <div class="price monthly-only"><b>₹7,999</b><span>/month</span></div>
+        <div class="annual-only"><div class="price"><b>₹79,990</b><span>/year</span></div>
+          <p class="annual-note">₹6,665/month · <span class="save">Save ₹15,998</span> · <span class="free-badge">2 months FREE</span></p></div>
         <p class="plan-desc">For brands that live on video.</p>
         <ul class="checks">
           <li>Everything in Business, incl. Content Brain + Quick Post</li>
@@ -561,7 +582,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
       </article>
     </div>
     <p class="all-ai reveal"><b>All AI included — no Anthropic, OpenAI or other API keys needed. One price, everything included.</b></p>
-    <p class="intl reveal">🌍 <b>International pricing available</b> — $18, $48 and $96 a month, or pay in GBP, AED, AUD or SGD. Choose your country code in the form and you'll pay by card in your currency.</p>
+    <p class="intl reveal">🌍 <b>International pricing available</b> — $18, $48 and $96 a month, or pay in GBP, AED, AUD or SGD. Choose your country code in the form and you'll pay by card in your currency. Annual billing is in rupees (India).</p>
 
     <div class="compare-wrap reveal">
       <table class="compare">
@@ -648,10 +669,14 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
         </div>
         <fieldset class="field full" style="border:0">
           <legend class="legend" style="margin-bottom:7px">Plan</legend>
-          <div class="plans-pick">
-            <label class="plan-opt"><input type="radio" name="plan" value="starter"><span class="box"><b>Starter</b><span>₹1,499/month · 3 platforms</span></span></label>
-            <label class="plan-opt"><input type="radio" name="plan" value="business" checked><span class="box"><b>Business</b><span>₹3,999/month · 7 platforms + images</span></span></label>
-            <label class="plan-opt"><input type="radio" name="plan" value="creator"><span class="box"><b>Creator</b><span>₹7,999/month · + AI videos</span></span></label>
+          <div class="plans-pick" id="plansPick">
+            <label class="plan-opt"><input type="radio" name="plan" value="starter"><span class="box"><b>Starter</b><span class="monthly-only">₹1,499/month · 3 platforms</span><span class="annual-only">₹14,990/year · save ₹2,998</span></span></label>
+            <label class="plan-opt"><input type="radio" name="plan" value="business" checked><span class="box"><b>Business</b><span class="monthly-only">₹3,999/month · 7 platforms + images</span><span class="annual-only">₹39,990/year · save ₹7,998</span></span></label>
+            <label class="plan-opt"><input type="radio" name="plan" value="creator"><span class="box"><b>Creator</b><span class="monthly-only">₹7,999/month · + AI videos</span><span class="annual-only">₹79,990/year · save ₹15,998</span></span></label>
+          </div>
+          <div class="plans-pick" style="margin-top:8px">
+            <label class="plan-opt"><input type="radio" name="billing" value="monthly" checked><span class="box"><b>Monthly</b><span>Cancel anytime</span></span></label>
+            <label class="plan-opt"><input type="radio" name="billing" value="annual"><span class="box"><b>Annual</b><span>2 months FREE · India (₹) only</span></span></label>
           </div>
         </fieldset>
         <div class="field full">
@@ -787,7 +812,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
         <div class="brand"><b style="font-size:19px">PostPilot</b></div>
         <p>AI social media automation for Indian small businesses</p>
         <span class="venture">A Quality Group Venture</span>
-        <p>Quality Group · Baijnath, Himachal Pradesh 176115</p>
+        <p>Quality Group · Palampur, Himachal Pradesh-176061</p>
       </div>
       <ul class="foot-links">
         <li><a href="/download.html">Download</a></li>
@@ -854,6 +879,18 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
       if (history.replaceState) history.replaceState(null, "", id);
     });
   });
+
+  // ── Monthly / Annual: the pricing cards and the form's billing choice follow each other ──
+  function setCycle(cycle) {
+    var annual = cycle === "annual";
+    $$(".billing-toggle [data-cycle]").forEach(function (b) { b.setAttribute("aria-checked", String(b.dataset.cycle === cycle)); });
+    ["#pricingGrid", "#plansPick"].forEach(function (sel) { var el = $(sel); if (el) el.classList.toggle("is-annual", annual); });
+    var r = $('input[name="billing"][value="' + cycle + '"]'); if (r) r.checked = true;
+  }
+  $$(".billing-toggle [data-cycle]").forEach(function (b) {
+    b.addEventListener("click", function () { setCycle(b.dataset.cycle); });
+  });
+  $$('input[name="billing"]').forEach(function (r) { r.addEventListener("change", function () { setCycle(r.value); }); });
 
   // ── Pricing buttons pre-select the plan ──────────────────────────────
   $$("[data-plan]").forEach(function (btn) {
@@ -1007,7 +1044,8 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
       email: $("#f-email").value.trim().toLowerCase(),
       phone: normalisePhone(cc, $("#f-phone").value),
       niche: $("#f-type").value,
-      plan: ($('input[name="plan"]:checked') || {}).value || "business",
+      plan: (($('input[name="plan"]:checked') || {}).value || "business") +
+            ((($('input[name="billing"]:checked') || {}).value === "annual") ? "_annual" : ""),     // e.g. business_annual
       coupon: $("#f-coupon").value.trim().toUpperCase(),
       ref: referralCode(),
       tc1: true, tc2: true, tc3: true,
@@ -1039,7 +1077,8 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
           // A coupon made it free: the license is already active and on its way by email / WhatsApp
           show("ok", data.message || "🎉 Your free month is active! Your license key has been sent to your email.");
           form.reset();
-          $('input[name="plan"][value="' + payload.plan + '"]').checked = true;
+          $('input[name="plan"][value="' + payload.plan.replace("_annual", "") + '"]').checked = true;
+          setCycle(/_annual$/.test(payload.plan) ? "annual" : "monthly");
           return;
         }
         if (r.res.ok && data.success) {
@@ -1061,7 +1100,8 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
           }
           show("ok", box);
           form.reset();
-          $('input[name="plan"][value="' + payload.plan + '"]').checked = true;
+          $('input[name="plan"][value="' + payload.plan.replace("_annual", "") + '"]').checked = true;
+          setCycle(/_annual$/.test(payload.plan) ? "annual" : "monthly");
         } else {
           show("err", data.error || ("Something went wrong (error " + r.res.status + "). Please try again."));
         }
