@@ -1032,6 +1032,51 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
     return "";
   }
 
+  // Free trials are one per person (trial_guard.py on the server): a one-way SHA-256 of this browser's
+  // characteristics. Only the hash is sent; the values themselves never leave the browser.
+  var deviceFingerprint = "";
+  (function () {
+    function canvasSig() {
+      try {
+        var c = document.createElement("canvas"); c.width = 240; c.height = 60;
+        var x = c.getContext("2d");
+        x.textBaseline = "top"; x.font = "16px Arial"; x.fillStyle = "#f60"; x.fillRect(10, 5, 120, 30);
+        x.fillStyle = "#069"; x.fillText("PostPilot ✓ नमस्ते 🎉", 4, 18);
+        x.fillStyle = "rgba(102,204,0,0.7)"; x.fillText("PostPilot ✓ नमस्ते 🎉", 6, 22);
+        return c.toDataURL();
+      } catch (err) { return ""; }
+    }
+    function webglRenderer() {
+      try {
+        var gl = document.createElement("canvas").getContext("webgl");
+        if (!gl) return "";
+        var ext = gl.getExtension("WEBGL_debug_renderer_info");
+        return String(gl.getParameter(ext ? ext.UNMASKED_RENDERER_WEBGL : gl.RENDERER) || "");
+      } catch (err) { return ""; }
+    }
+    function fontCount() {                           // fonts that change a test string's width
+      try {
+        var x = document.createElement("canvas").getContext("2d"), text = "mmmmmmmmmmlli10OO";
+        var fonts = ["Arial", "Calibri", "Cambria", "Comic Sans MS", "Courier New", "Georgia", "Helvetica",
+                     "Impact", "Lucida Console", "Mangal", "Noto Sans Devanagari", "Roboto", "Segoe UI", "Tahoma",
+                     "Times New Roman", "Trebuchet MS", "Ubuntu", "Verdana", "Nirmala UI", "SF Pro Text"];
+        x.font = "72px monospace"; var base = x.measureText(text).width;
+        return fonts.filter(function (f) { x.font = "72px '" + f + "', monospace"; return x.measureText(text).width !== base; }).length;
+      } catch (err) { return -1; }
+    }
+    try {
+      if (!(window.crypto && crypto.subtle && window.TextEncoder)) return;
+      var parts = [screen.width + "x" + screen.height + "x" + screen.colorDepth, window.devicePixelRatio || 1,
+        (Intl.DateTimeFormat().resolvedOptions().timeZone || ""), navigator.userAgent,
+        (navigator.languages || [navigator.language]).join(","), canvasSig(), webglRenderer(), fontCount(),
+        navigator.hardwareConcurrency || 0, navigator.deviceMemory || 0];
+      crypto.subtle.digest("SHA-256", new TextEncoder().encode(parts.join("||"))).then(function (buf) {
+        deviceFingerprint = Array.prototype.map.call(new Uint8Array(buf), function (b) {
+          return ("0" + b.toString(16)).slice(-2); }).join("");
+      }).catch(function () {});
+    } catch (err) {}
+  })();
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     result.className = "result";
@@ -1049,6 +1094,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
       coupon: $("#f-coupon").value.trim().toUpperCase(),
       ref: referralCode(),
       tc1: true, tc2: true, tc3: true,
+      device_fingerprint: deviceFingerprint,
       source: "website"
     };
 
