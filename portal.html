@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<title>Your account — Zyps PostPilot</title>
+<style>
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0A0A0F;color:#A8A3C2;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;text-align:center;padding:24px}
+.box{max-width:380px}
+h1{color:#F4F2FF;font-size:22px;margin:18px 0 8px}
+p{margin:6px 0;line-height:1.5}
+a{color:#9B7BFF}
+.spin{width:34px;height:34px;margin:0 auto;border-radius:50%;border:3px solid rgba(155,123,255,.25);
+  border-top-color:#9B7BFF;animation:s .8s linear infinite}
+@keyframes s{to{transform:rotate(360deg)}}
+#slow,#manual{display:none}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="spin" aria-hidden="true"></div>
+  <h1>Opening your PostPilot account…</h1>
+  <p id="slow">Our server is starting up — this can take up to a minute. Please keep this page open.</p>
+  <p id="manual">Taking too long? <a id="go" href="#">Continue</a></p>
+</div>
+<script>
+(function () {
+  "use strict";
+  // postpilot.zypsapp.com/portal → the account portal on the Zyps server. The server is woken up first: a link
+  // that reaches a sleeping Render server lands on Render's "spinning up" page. Only ?lang= is passed on.
+  var SERVER = "https://zyps-postpilot-server.onrender.com";
+  var lang = (location.search.match(/[?&]lang=([a-z]{2})(?:&|$)/) || [])[1];
+  var target = SERVER + "/portal" + (lang ? "?lang=" + lang : "");
+  var started = Date.now(), done = false;
+  document.getElementById("go").href = target;
+  function go() { if (!done) { done = true; location.replace(target); } }
+  function ping() {
+    var ctrl = "AbortController" in window ? new AbortController() : null;
+    var t = setTimeout(function () { if (ctrl) ctrl.abort(); }, 15000);
+    fetch(SERVER + "/ping?t=" + Date.now(), { cache: "no-store", signal: ctrl ? ctrl.signal : undefined })
+      .then(function (r) { return r.json(); })
+      .then(function (d) { clearTimeout(t); if (d && d.ok) go(); else retry(); })
+      .catch(function () { clearTimeout(t); retry(); });
+  }
+  function retry() {
+    var waited = Date.now() - started;
+    if (waited > 3000) document.getElementById("slow").style.display = "block";
+    if (waited > 30000) document.getElementById("manual").style.display = "block";
+    if (waited > 120000) return go();                    // give up waiting; the server shows what's wrong
+    setTimeout(ping, 2500);
+  }
+  ping();
+})();
+</script>
+</body>
+</html>
