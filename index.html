@@ -1732,12 +1732,24 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
   };
 
   function applyLang(code){
-    var dict=T[code]||T.en;
+    // English is the page's own HTML, never a dictionary: the HTML is the source of truth for English copy.
+    var dict=(code==='en')?null:T[code];
     var rtl=(code==='ur');   // Urdu is the only right-to-left language in the picker
     document.querySelectorAll('[data-i18n]').forEach(function(el){
       var key=el.getAttribute('data-i18n');
-      if(dict[key]===undefined) return;
+      // Remember the page's original markup before the first translation touches a node,
+      // so choosing English again (or a language missing this key) restores the real copy.
+      if(el._orig===undefined) el._orig=el.innerHTML;
+      if(!dict||dict[key]===undefined){
+        if(el._applied){
+          el.innerHTML=el._orig;
+          el.removeAttribute('dir');el.removeAttribute('lang');
+          el._applied=false;
+        }
+        return;
+      }
       el.innerHTML=dict[key];
+      el._applied=true;
       // Mark only the translated node RTL, so untranslated English blocks keep their LTR layout.
       if(rtl){el.setAttribute('dir','rtl');el.setAttribute('lang','ur');}
       else{el.removeAttribute('dir');el.removeAttribute('lang');}
