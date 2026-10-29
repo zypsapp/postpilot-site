@@ -117,6 +117,8 @@ h1[data-i18n][lang="ur"],h2[data-i18n][lang="ur"],h3[data-i18n][lang="ur"]{line-
 .plats li i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;background:var(--c)}
 @keyframes pillIn{to{opacity:1;transform:none}}
 @keyframes pillGlow{0%,12%,100%{border-color:rgba(255,255,255,.12);box-shadow:none}6%{border-color:var(--c);box-shadow:0 0 18px -4px var(--c)}}
+.wa-hook{display:inline-flex;align-items:center;gap:10px;max-width:100%;margin:0 0 22px;padding:10px 16px;border-radius:14px;font-size:15px;font-weight:600;line-height:1.45;color:#DFFBE9;background:linear-gradient(135deg,rgba(37,211,102,.18),rgba(37,211,102,.05));border:1px solid rgba(37,211,102,.4)}
+.wa-hook>span:first-child{font-size:20px;flex:none}
 .badges{display:flex;flex-wrap:wrap;gap:10px 22px;list-style:none;color:var(--muted);font-size:14px}
 .badges li{display:flex;align-items:center;gap:8px}
 .badges li::before{content:"✓";width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:800;color:var(--bg);background:var(--ok)}
@@ -440,6 +442,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
         <a href="#pricing" class="btn btn-ghost" data-i18n="cta.seePricing">See Pricing</a>
       </div>
       <ul class="plats" aria-label="Supported platforms"><li style="--i:0;--c:#0A66C2"><i aria-hidden="true"></i>LinkedIn</li><li style="--i:1;--c:#E1306C"><i aria-hidden="true"></i>Instagram</li><li style="--i:2;--c:#1877F2"><i aria-hidden="true"></i>Facebook</li><li style="--i:3;--c:#FFFFFF"><i aria-hidden="true"></i>X</li><li style="--i:4;--c:#B4B4B4"><i aria-hidden="true"></i>Threads</li><li style="--i:5;--c:#34A853"><i aria-hidden="true"></i>Google Business</li><li style="--i:6;--c:#29B6F6"><i aria-hidden="true"></i>Telegram</li></ul>
+      <p class="wa-hook"><span aria-hidden="true">📲</span><span data-i18n="hero.wa">Plus: a ready-made WhatsApp Status every morning — image + caption, one tap to post</span></p>
       <ul class="badges">
         <li data-i18n="hero.badge1">Pay by UPI — no card needed</li>
         <li data-i18n="hero.badge2">Cancel anytime</li>
@@ -615,6 +618,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
         <p class="plan-desc" data-i18n="pricing.creator.desc">For brands that live on video.</p>
         <ul class="checks">
           <li>Everything in Business, incl. Content Brain + Quick Post</li>
+          <li>Daily WhatsApp Status content — image + caption ready every morning, one tap to post</li>
           <li>AI videos up to 30 seconds</li>
           <li>Brand voice training on your past posts</li>
           <li>TikTok + Pinterest <small>(TikTok once your account is approved)</small></li>
@@ -636,6 +640,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
           <tr><th scope="row">LinkedIn, Facebook, Instagram</th><td>✓</td><td class="hl">✓</td><td>✓</td></tr>
           <tr><th scope="row">X, Threads, Google Business, Telegram</th><td class="no">—</td><td class="hl">✓</td><td>✓</td></tr>
           <tr><th scope="row">TikTok, Pinterest</th><td class="no">—</td><td class="hl no">—</td><td>✓</td></tr>
+          <tr><th scope="row">Daily WhatsApp Status (image + caption, one tap to post)</th><td>✓</td><td class="hl">✓</td><td>✓</td></tr>
           <tr><th scope="row">Posts per week</th><td>Up to 15</td><td class="hl">Up to 28</td><td>Up to 49</td></tr>
           <tr><th scope="row">Choose your posting days</th><td class="no">—</td><td class="hl">✓</td><td>✓</td></tr>
           <tr><th scope="row">Languages</th><td>English</td><td class="hl">10 Indian + English</td><td>10 Indian + English</td></tr>
@@ -1230,6 +1235,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
     'hero.lead':'PostPilot 7 प्लेटफॉर्म पर अपने आप पोस्ट करता है — हिंदी, तमिल, तेलुगु और 8 और भाषाओं में। एक बार सेट करें, फिर कभी हाथ न लगाएं।',
     'cta.getStarted2':'शुरू करें →',
     'cta.seePricing':'मूल्य देखें',
+    'hero.wa':'साथ में: हर सुबह तैयार WhatsApp Status — इमेज + कैप्शन, एक टैप में पोस्ट',
     'hero.badge1':'UPI से भुगतान — कार्ड की जरूरत नहीं',
     'hero.badge2':'कभी भी रद्द करें',
     'hero.badge3':'10 मिनट में सेटअप',
@@ -1320,6 +1326,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
     'hero.lead':'PostPilot 7 தளங்களில் தானாக பதிவிடுகிறது — இந்தி, தமிழ், தெலுங்கு மற்றும் மேலும் 8 மொழிகளில். ஒருமுறை அமைத்தால் போதும், மீண்டும் தொட வேண்டியதில்லை.',
     'cta.getStarted2':'தொடங்குங்கள் →',
     'cta.seePricing':'விலை பார்க்க',
+    'hero.wa':'கூடவே: ஒவ்வொரு காலையும் தயாரான WhatsApp Status — படம் + கேப்ஷன், ஒரு தட்டலில் பதிவிடுங்கள்',
     'hero.badge1':'UPI மூலம் செலுத்துங்கள் — கார்டு தேவையில்லை',
     'hero.badge2':'எப்போது வேண்டுமானாலும் ரத்து செய்யலாம்',
     'hero.badge3':'10 நிமிடங்களில் அமைப்பு',
@@ -1410,6 +1417,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
     'hero.lead':'PostPilot 7 ప్లాట్‌ఫారమ్‌లలో ఆటోమేటిక్‌గా పోస్ట్ చేస్తుంది — హిందీ, తమిళం, తెలుగు మరియు మరో 8 భాషల్లో. ఒక్కసారి సెట్ చేస్తే చాలు, మళ్లీ ముట్టుకోవాల్సిన అవసరం లేదు.',
     'cta.getStarted2':'ప్రారంభించండి →',
     'cta.seePricing':'ధర చూడండి',
+    'hero.wa':'అదనంగా: ప్రతి ఉదయం సిద్ధంగా WhatsApp Status — చిత్రం + క్యాప్షన్, ఒక్క ట్యాప్‌లో పోస్ట్',
     'hero.badge1':'UPI తో చెల్లించండి — కార్డ్ అవసరం లేదు',
     'hero.badge2':'ఎప్పుడైనా రద్దు చేయవచ్చు',
     'hero.badge3':'10 నిమిషాల్లో సెటప్',
@@ -1500,6 +1508,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
     'hero.lead':'PostPilot ৭টি প্ল্যাটফর্মে নিজে থেকেই পোস্ট করে — হিন্দি, তামিল, তেলুগু এবং আরও ৮টি ভাষায়। একবার সেট করুন, আর হাত দিতে হবে না।',
     'cta.getStarted2':'শুরু করুন →',
     'cta.seePricing':'মূল্য দেখুন',
+    'hero.wa':'সঙ্গে আরও: প্রতি সকালে তৈরি WhatsApp Status — ছবি + ক্যাপশন, এক ট্যাপে পোস্ট',
     'hero.badge1':'UPI-তে পেমেন্ট — কার্ড লাগবে না',
     'hero.badge2':'যেকোনো সময় বাতিল করুন',
     'hero.badge3':'১০ মিনিটে সেটআপ',
@@ -1590,6 +1599,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
     'hero.lead':'PostPilot ७ प्लॅटफॉर्मवर आपोआप पोस्ट करतो — हिंदी, तमिळ, तेलुगू आणि आणखी ८ भाषांमध्ये. एकदा सेट करा, पुन्हा हात लावायची गरज नाही.',
     'cta.getStarted2':'सुरू करा →',
     'cta.seePricing':'किंमत पहा',
+    'hero.wa':'शिवाय: दररोज सकाळी तयार WhatsApp Status — इमेज + कॅप्शन, एका टॅपमध्ये पोस्ट',
     'hero.badge1':'UPI ने पेमेंट — कार्डची गरज नाही',
     'hero.badge2':'कधीही रद्द करा',
     'hero.badge3':'१० मिनिटांत सेटअप',
@@ -1680,6 +1690,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
     'hero.lead':'PostPilot ૭ પ્લેટફોર્મ પર આપોઆપ પોસ્ટ કરે છે — હિન્દી, તમિલ, તેલુગુ અને બીજી ૮ ભાષાઓમાં. એક વાર સેટ કરો, ફરી હાથ લગાડવાની જરૂર નથી.',
     'cta.getStarted2':'શરૂ કરો →',
     'cta.seePricing':'કિંમત જુઓ',
+    'hero.wa':'ઉપરાંત: દરરોજ સવારે તૈયાર WhatsApp Status — ઈમેજ + કૅપ્શન, એક ટેપમાં પોસ્ટ',
     'hero.badge1':'UPI થી ચુકવણી — કાર્ડની જરૂર નથી',
     'hero.badge2':'ગમે ત્યારે રદ કરો',
     'hero.badge3':'૧૦ મિનિટમાં સેટઅપ',
@@ -1770,6 +1781,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
     'hero.lead':'PostPilot ೭ ವೇದಿಕೆಗಳಲ್ಲಿ ತಾನಾಗಿಯೇ ಪೋಸ್ಟ್ ಮಾಡುತ್ತದೆ — ಹಿಂದಿ, ತಮಿಳು, ತೆಲುಗು ಮತ್ತು ಇನ್ನೂ ೮ ಭಾಷೆಗಳಲ್ಲಿ. ಒಮ್ಮೆ ಸೆಟ್ ಮಾಡಿ, ಮತ್ತೆ ಮುಟ್ಟುವ ಅಗತ್ಯವಿಲ್ಲ.',
     'cta.getStarted2':'ಪ್ರಾರಂಭಿಸಿ →',
     'cta.seePricing':'ಬೆಲೆ ನೋಡಿ',
+    'hero.wa':'ಜೊತೆಗೆ: ಪ್ರತಿ ಬೆಳಿಗ್ಗೆ ಸಿದ್ಧ WhatsApp Status — ಚಿತ್ರ + ಕ್ಯಾಪ್ಷನ್, ಒಂದು ಟ್ಯಾಪ್‌ನಲ್ಲಿ ಪೋಸ್ಟ್',
     'hero.badge1':'UPI ಮೂಲಕ ಪಾವತಿಸಿ — ಕಾರ್ಡ್ ಬೇಡ',
     'hero.badge2':'ಯಾವಾಗ ಬೇಕಾದರೂ ರದ್ದುಮಾಡಿ',
     'hero.badge3':'೧೦ ನಿಮಿಷದಲ್ಲಿ ಸೆಟಪ್',
@@ -1860,6 +1872,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
     'hero.lead':'PostPilot ੭ ਪਲੈਟਫਾਰਮਾਂ ਉੱਤੇ ਆਪਣੇ ਆਪ ਪੋਸਟ ਕਰਦਾ ਹੈ — ਹਿੰਦੀ, ਤਮਿਲ, ਤੇਲਗੂ ਅਤੇ ੮ ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ। ਇੱਕ ਵਾਰ ਸੈੱਟ ਕਰੋ, ਮੁੜ ਹੱਥ ਲਾਉਣ ਦੀ ਲੋੜ ਨਹੀਂ।',
     'cta.getStarted2':'ਸ਼ੁਰੂ ਕਰੋ →',
     'cta.seePricing':'ਕੀਮਤ ਦੇਖੋ',
+    'hero.wa':'ਨਾਲ ਹੀ: ਹਰ ਸਵੇਰ ਤਿਆਰ WhatsApp Status — ਤਸਵੀਰ + ਕੈਪਸ਼ਨ, ਇੱਕ ਟੈਪ ਵਿੱਚ ਪੋਸਟ',
     'hero.badge1':'UPI ਨਾਲ ਭੁਗਤਾਨ — ਕਾਰਡ ਦੀ ਲੋੜ ਨਹੀਂ',
     'hero.badge2':'ਕਦੇ ਵੀ ਰੱਦ ਕਰੋ',
     'hero.badge3':'੧੦ ਮਿੰਟ ਵਿੱਚ ਸੈੱਟਅੱਪ',
@@ -1950,6 +1963,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
     'hero.lead':'PostPilot 7 പ്ലാറ്റ്ഫോമുകളിൽ സ്വയം പോസ്റ്റ് ചെയ്യുന്നു — ഹിന്ദി, തമിഴ്, തെലുങ്ക്, കൂടാതെ 8 ഭാഷകളിൽ. ഒരിക്കൽ സെറ്റ് ചെയ്താൽ മതി, പിന്നീട് തൊടേണ്ടതില്ല.',
     'cta.getStarted2':'ആരംഭിക്കൂ →',
     'cta.seePricing':'വില കാണൂ',
+    'hero.wa':'കൂടാതെ: ഓരോ പ്രഭാതത്തിലും തയ്യാറായ WhatsApp Status — ചിത്രം + ക്യാപ്ഷൻ, ഒരു ടാപ്പിൽ പോസ്റ്റ്',
     'hero.badge1':'UPI വഴി പണമടയ്ക്കൂ — കാർഡ് വേണ്ട',
     'hero.badge2':'എപ്പോൾ വേണമെങ്കിലും റദ്ദാക്കാം',
     'hero.badge3':'10 മിനിറ്റിൽ സെറ്റപ്പ്',
@@ -2040,6 +2054,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
     'hero.lead':'PostPilot 7 پلیٹ فارمز پر خودکار طور پر پوسٹ کرتا ہے — ہندی، تمل، تیلگو اور 8 مزید زبانوں میں۔ ایک بار سیٹ کریں، پھر کبھی ہاتھ نہ لگائیں۔',
     'cta.getStarted2':'شروع کریں ←',
     'cta.seePricing':'قیمتیں دیکھیں',
+    'hero.wa':'ساتھ میں: ہر صبح تیار WhatsApp Status — تصویر + کیپشن، ایک ٹیپ میں پوسٹ',
     'hero.badge1':'UPI سے ادائیگی — کارڈ کی ضرورت نہیں',
     'hero.badge2':'کسی بھی وقت منسوخ کریں',
     'hero.badge3':'10 منٹ میں سیٹ اپ',
