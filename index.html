@@ -87,6 +87,11 @@ h2{font-size:clamp(30px,4.6vw,46px);margin:14px 0 16px}
 .lang-opt.active{background:rgba(108,60,225,.25);color:var(--purple-hi);font-weight:600}
 .lang-opt .native{font-size:15px;font-weight:700;display:block;color:var(--text)}
 .lang-opt .eng{font-size:11px;color:var(--dim)}
+/* Urdu (Arabic script, RTL): letter-spacing breaks letter joining, and headings need taller lines.
+   Applied only to translated nodes (applyLang sets lang="ur" dir="rtl" on them), so the page layout stays LTR. */
+[data-i18n][lang="ur"],[data-i18n][lang="ur"] *{letter-spacing:0!important;text-transform:none}
+[data-i18n][lang="ur"]{line-height:1.8}
+h1[data-i18n][lang="ur"],h2[data-i18n][lang="ur"],h3[data-i18n][lang="ur"]{line-height:1.5}
 .burger{display:none;width:44px;height:44px;border-radius:10px;border:1px solid var(--line-2);background:rgba(255,255,255,.04);cursor:pointer;position:relative}
 .burger span{position:absolute;left:12px;right:12px;height:2px;background:var(--text);border-radius:2px;transition:transform .25s ease,opacity .2s}
 .burger span:nth-child(1){top:15px}.burger span:nth-child(2){top:21px}.burger span:nth-child(3){top:27px}
@@ -410,6 +415,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
             <button class="lang-opt" data-lang="kn" role="menuitem"><span class="native">ಕನ್ನಡ</span><span class="eng">Kannada</span></button>
             <button class="lang-opt" data-lang="pa" role="menuitem"><span class="native">ਪੰਜਾਬੀ</span><span class="eng">Punjabi</span></button>
             <button class="lang-opt" data-lang="ml" role="menuitem"><span class="native">മലയാളം</span><span class="eng">Malayalam</span></button>
+            <button class="lang-opt" data-lang="ur" role="menuitem"><span class="native" lang="ur">اردو</span><span class="eng">Urdu</span></button>
           </div>
         </div>
       </div>
@@ -1201,7 +1207,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
 // ── Language picker with in-place translation ────────────────────────────────
 (function(){
   var LANG_NAMES={en:'English',hi:'हिन्दी',ta:'தமிழ்',te:'తెలుగు',bn:'বাংলা',
-    mr:'मराठी',gu:'ગુજરાતી',kn:'ಕನ್ನಡ',pa:'ਪੰਜਾਬੀ',ml:'മലയാളം'};
+    mr:'मराठी',gu:'ગુજરાતી',kn:'ಕನ್ನಡ',pa:'ਪੰਜਾਬੀ',ml:'മലയാളം',ur:'اردو'};
   var KEY='pp-site-lang';
   var cur='en';
   try{cur=localStorage.getItem(KEY)||'en';}catch(e){}
@@ -1675,12 +1681,66 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
     'faq.eyebrow':'പതിവായി ചോദിക്കുന്ന ചോദ്യങ്ങൾ','faq.h2':'പതിവായി ചോദിക്കുന്ന ചോദ്യങ്ങൾ',
     'ctaband.h2':'നിങ്ങളുടെ സോഷ്യൽ മീഡിയ യാന്ത്രികമാക്കാൻ തയ്യാറോ?','ctaband.lead':'PostPilot-മൊത്തം ദിവസം 3+ മണിക്കൂർ ലാഭിക്കുന്ന ഭാരതീയ ബിസിനസുകളോടൊടൊപ്പം ചേരൂ.'
   };
+  T.ur={
+    'nav.features':'خصوصیات','nav.pricing':'قیمت','nav.languages':'زبانیں','nav.faq':'سوال و جواب',
+    'cta.getStarted':'مفت شروع کریں','cta.getStarted2':'آج ہی مفت شروع کریں','cta.seePricing':'قیمتیں دیکھیں',
+    'hero.pillNew':'نیا','hero.pill':'ہندوستانی کاروباروں کے لیے AI سوشل میڈیا منیجر',
+    'hero.h1':'خودکار طور پر <em>ہر ہندوستانی زبان میں</em> پوسٹ کریں',
+    'hero.lead':'PostPilot ہندی، تمل، تیلگو، بنگالی اور 7 مزید زبانوں میں سوشل میڈیا مواد بناتا، شیڈول کرتا اور شائع کرتا ہے۔ ایک بار سیٹ کریں، ہمیشہ پوسٹ کریں۔',
+    'hero.badge1':'✓ ڈیزائن کی مہارت ضروری نہیں','hero.badge2':'✓ WhatsApp کے ساتھ کام کرتا ہے','hero.badge3':'✓ تہواروں کی پوسٹس خودکار',
+    'problem.eyebrow':'مسئلہ','problem.h2':'سوشل میڈیا ایک فل ٹائم کام ہے جو آپ کے بس کا نہیں',
+    'problem.c1.h3':'وقت نہیں','problem.c1.p':'آپ کاروبار چلا رہے ہیں۔ روزانہ پوسٹ بنانے میں وہ گھنٹے لگ جاتے ہیں جو آپ کے پاس نہیں ہیں۔','problem.c1.stat':'روزانہ 3+ گھنٹے ضائع',
+    'problem.c2.h3':'زبان کی رکاوٹ','problem.c2.p':'آپ کے گاہک ہندی، تمل، مراٹھی بولتے ہیں — لیکن ٹولز صرف انگریزی میں کام کرتے ہیں۔','problem.c2.stat':'11 ہندوستانی زبانیں نظر انداز',
+    'problem.c3.h3':'تہوار چھوٹ جاتے ہیں','problem.c3.p':'دیوالی، عید، پونگل، نوراتری — ہر چھوٹا ہوا تہوار کھویا ہوا کاروبار ہے۔','problem.c3.stat':'سالانہ 50+ تہوار چھوٹ جاتے ہیں',
+    'how.eyebrow':'یہ کیسے کام کرتا ہے','how.h2':'تین مراحل میں خودکار سوشل میڈیا',
+    'how.lead':'PostPilot آپ کے گاہکوں کی زبان میں، تخلیق سے اشاعت تک سب کچھ سنبھالتا ہے۔',
+    'how.s1.h3':'1. اپنے پیج جوڑیں','how.s1.p':'چند منٹوں میں Facebook، Instagram، Google Business اور WhatsApp لنک کریں۔',
+    'how.s2.h3':'2. AI مواد تیار کرتا ہے','how.s2.p':'اپنے کاروبار کے بارے میں ایک بار بتائیں۔ ہمارا AI آپ کی زبان، آپ کے انداز اور آپ کے لہجے میں روزانہ پوسٹس بناتا ہے۔',
+    'how.s3.h3':'3. روزانہ خودکار اشاعت','how.s3.p':'WhatsApp پر پوسٹس منظور کریں یا PostPilot کو خود شائع کرنے دیں۔ آپ اپنے کاروبار پر توجہ دیں، آپ کے پیج فعال رہتے ہیں۔',
+    'feat.eyebrow':'خصوصیات','feat.h2':'آپ کے کاروبار کو جو کچھ چاہیے',
+    'feat.f1.h3':'AI پوسٹ جنریشن','feat.f1.p':'Claude AI آپ کے کاروبار اور ناظرین کے مطابق دلکش پوسٹس بناتا ہے۔',
+    'feat.f2.h3':'11 ہندوستانی زبانیں','feat.f2.p':'ہندی، تمل، تیلگو، بنگالی، مراٹھی، گجراتی، کنڑ، ملیالم، پنجابی، اردو، انگریزی۔',
+    'feat.f3.h3':'تہواروں کا کیلنڈر','feat.f3.p':'ہر ہندوستانی تہوار کے لیے خودکار پوسٹس — دیوالی، ہولی، عید، کرسمس، علاقائی تہوار اور بہت کچھ۔',
+    'feat.f4.h3':'WhatsApp منظوری','feat.f4.p':'WhatsApp سے پوسٹس کا جائزہ لیں اور منظور کریں۔ بس YES یا NO لکھ کر جواب دیں۔',
+    'feat.f5.h3':'ملٹی پلیٹ فارم','feat.f5.p':'Facebook، Instagram، Google Business Profile، WhatsApp Status — ایک کلک، ہر جگہ۔',
+    'feat.f6.h3':'اسمارٹ شیڈولنگ','feat.f6.p':'پوسٹس آپ کے ناظرین کے لیے بہترین اوقات پر خودکار طور پر لائیو ہوتی ہیں۔',
+    'feat.f7.h3':'برانڈ میں یکسانیت','feat.f7.p':'آپ کا لوگو، رنگ اور لہجہ ہر پوسٹ اور ہر پلیٹ فارم پر یکساں رہتا ہے۔',
+    'feat.f8.h3':'کارکردگی کی رپورٹس','feat.f8.p':'کیا کام کر رہا ہے، اس کی ہفتہ وار رپورٹس آپ کے WhatsApp پر بھیجی جاتی ہیں۔',
+    'feat.f9.h3':'متعدد مقامات','feat.f9.p':'ایک ہی ڈیش بورڈ سے اپنی تمام شاخوں کا سوشل میڈیا چلائیں۔',
+    'feat.f10.h3':'ٹیم تک رسائی','feat.f10.p':'مختلف اجازتوں کے ساتھ ٹیم ممبران شامل کریں — منیجر، ایڈیٹر، ویور۔',
+    'feat.f11.h3':'کنٹنٹ کیلنڈر','feat.f11.p':'تمام آنے والی پوسٹس کیلنڈر ویو میں دیکھیں۔ جب چاہیں ایڈٹ کریں، دوبارہ شیڈول کریں یا حذف کریں۔',
+    'feat.f12.h3':'حسبِ ضرورت پروموشنز','feat.f12.p':'سیل چل رہی ہے؟ PostPilot کو بتائیں اور وہ فوراً پروموشنل مواد بنا دے گا۔',
+    'feat.f13.h3':'تبصروں کا انتظام','feat.f13.p':'تمام پلیٹ فارمز کے تبصرے ایک ہی ان باکس سے دیکھیں اور جواب دیں۔',
+    'feat.f14.h3':'ہیش ٹیگ ریسرچ','feat.f14.p':'AI آپ کی صنعت اور مقام کے لیے بہترین ہیش ٹیگ خودکار طور پر چنتا ہے۔',
+    'feat.f15.h3':'تصاویر کی تخلیق','feat.f15.p':'AI آپ کی پوسٹس کے لیے حسبِ ضرورت تصاویر بناتا ہے — Canva کی مہارت کی ضرورت نہیں۔',
+    'feat.f16.h3':'24/7 سپورٹ','feat.f16.p':'جب بھی ضرورت ہو، آپ کی زبان میں WhatsApp سپورٹ۔',
+    'pricing.eyebrow':'قیمتیں','pricing.h2':'سادہ اور شفاف قیمتیں',
+    'pricing.lead':'کوئی چھپی فیس نہیں۔ کوئی معاہدہ نہیں۔ جب چاہیں منسوخ کریں۔',
+    'pricing.starter.desc':'ان چھوٹے کاروباروں کے لیے جو سوشل میڈیا آٹومیشن شروع کر رہے ہیں۔',
+    'pricing.starter.cta':'مفت ٹرائل شروع کریں',
+    'pricing.business.desc':'بڑھتے ہوئے کاروباروں کے لیے جنہیں زیادہ طاقت اور پلیٹ فارمز درکار ہیں۔',
+    'pricing.business.cta':'مفت ٹرائل شروع کریں',
+    'pricing.creator.desc':'ایجنسیوں اور متعدد مقامات سنبھالنے والے کاروباروں کے لیے۔',
+    'pricing.creator.cta':'مفت ٹرائل شروع کریں',
+    'signup.eyebrow':'شروع کریں','signup.h2':'آج ہی اپنا مفت ٹرائل شروع کریں',
+    'signup.lead':'ان ہزاروں ہندوستانی کاروباروں میں شامل ہوں جو اپنا سوشل میڈیا خودکار بنا رہے ہیں۔',
+    'signup.submit':'میرا مفت ٹرائل شروع کریں',
+    'langs.eyebrow':'زبانیں','langs.h2':'اس زبان میں پوسٹ کریں جو آپ کے گاہک بولتے ہیں',
+    'langs.lead':'کشمیر سے کنیا کماری تک — PostPilot ہر بڑی ہندوستانی زبان میں مواد بناتا ہے تاکہ آپ کا پیغام مقامی سطح پر اثر کرے۔',
+    'faq.eyebrow':'اکثر پوچھے گئے سوالات','faq.h2':'اکثر پوچھے گئے سوالات',
+    'ctaband.h2':'کیا آپ اپنا سوشل میڈیا خودکار بنانے کے لیے تیار ہیں؟','ctaband.lead':'PostPilot کے ساتھ روزانہ 3+ گھنٹے بچانے والے ہندوستانی کاروباروں میں شامل ہوں۔'
+  };
 
   function applyLang(code){
     var dict=T[code]||T.en;
+    var rtl=(code==='ur');   // Urdu is the only right-to-left language in the picker
     document.querySelectorAll('[data-i18n]').forEach(function(el){
       var key=el.getAttribute('data-i18n');
-      if(dict[key]!==undefined) el.innerHTML=dict[key];
+      if(dict[key]===undefined) return;
+      el.innerHTML=dict[key];
+      // Mark only the translated node RTL, so untranslated English blocks keep their LTR layout.
+      if(rtl){el.setAttribute('dir','rtl');el.setAttribute('lang','ur');}
+      else{el.removeAttribute('dir');el.removeAttribute('lang');}
     });
   }
 
