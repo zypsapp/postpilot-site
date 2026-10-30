@@ -55,31 +55,33 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em;bac
   <a href="/" class="logo" aria-label="Zyps PostPilot home"><img src="/zyps-logo-160.png" alt="Zyps" width="42" height="42"><span class="brand"><b>PostPilot</b><small>A Quality Group Venture</small></span></a>
 </div></header>
 <main><div class="wrap"><div class="card">
-  <div class="icon" aria-hidden="true">⬇️</div>
-  <h1>Download PostPilot</h1>
-  <p class="lead">PostPilot runs on your own computer (Windows, Mac or Linux): your posts, queue and history are kept on that computer. Setup takes about 20 minutes.</p>
-  <div class="actions">
-    <a class="btn btn-primary" href="https://github.com/zypsapp/postpilot-releases/releases/latest" target="_blank" rel="noopener">Download the latest version</a>
-  </div>
+  <div class="icon ok" aria-hidden="true">✅</div>
+  <h1>Nothing to download</h1>
+  <p class="lead">PostPilot posts for you from our server. There is no app to install and no computer that has to stay on. Getting started takes about 3 minutes.</p>
   <ol class="steps" style="margin-top:30px">
-    <li><strong>Download</strong> from the link above. On Windows, choose <strong>ZypsPostPilotSetup.exe</strong>. On Mac or Linux, choose the <strong>.zip</strong> and unzip it. (The .zip needs <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">Python 3.11 or newer</a>.)</li>
-    <li><strong>Run the setup wizard</strong> — <code>ZypsPostPilotSetup.exe</code>, or <code>python setup_wizard.py</code> in the unzipped folder.</li>
-    <li><strong>Paste your license key</strong> and the email you signed up with. Your key is in your welcome email and WhatsApp.</li>
-    <li><strong>Connect your social accounts</strong> — the wizard links a guide for each one. No AI keys needed: AI is included in your plan.</li>
-    <li><strong>Start PostPilot</strong> with <code>start.bat</code> (Windows) or <code>start.sh</code> (Mac/Linux). Your dashboard opens at <code>localhost:8080</code>, and posting starts the next morning.</li>
+    <li><strong>Connect your accounts.</strong> Open the <em>Connect My Accounts</em> button in your welcome email (or WhatsApp) and sign in to Facebook, Instagram and the others, one tap each.</li>
+    <li><strong>Open your account.</strong> <a href="/portal.html">Log in here</a> with your license key (or an email link). It remembers you on that device, so you only do it once.</li>
+    <li><strong>That is it.</strong> PostPilot writes and posts for you. Your account page shows your results, your plan and your invoices.</li>
   </ol>
-  <h2 id="open" style="margin-top:34px">Already a customer? Open your dashboard</h2>
-  <p class="note"><strong>On any device:</strong> <a href="/portal.html">sign in to your account</a> with your license key (or an email link) to see your plan, invoices and connected accounts, get support and manage your subscription. It remembers you on that device. Posting itself runs from the app below.</p>
-  <ol class="steps">
-    <li><strong>Start PostPilot</strong> on the computer where you installed it: <code>start.bat</code> (Windows) or <code>start.sh</code> (Mac/Linux).</li>
-    <li><strong>Open</strong> <a href="http://localhost:8080/dashboard">localhost:8080/dashboard</a> in your browser. Your license key was saved during setup, so you do not enter it again.</li>
-    <li><strong>New computer, or lost your key?</strong> Install again and paste your key in the wizard. The key is in your welcome email and WhatsApp, or <a href="https://wa.me/918350983181?text=Hi%2C%20I%20need%20my%20PostPilot%20license%20key" target="_blank" rel="noopener">WhatsApp us</a> and we will help you recover it.</li>
-  </ol>
-  <p class="note">Keep the computer on and online at your posting times. Windows may warn about an unrecognised app the first time — choose <em>More info → Run anyway</em>.</p>
   <div class="actions">
-    <a class="btn btn-wa" href="https://wa.me/918350983181?text=Hi%2C%20I%20need%20help%20setting%20up%20PostPilot" target="_blank" rel="noopener">Stuck? WhatsApp us</a>
-    <a class="btn btn-ghost" href="/">Back to home</a>
+    <a class="btn btn-primary" href="/portal.html">Open my account</a>
+    <a class="btn btn-wa" href="https://wa.me/918350983181?text=Hi%2C%20I%20need%20help%20setting%20up%20PostPilot" target="_blank" rel="noopener">Need help? WhatsApp us</a>
   </div>
+  <details id="open" style="margin-top:34px;text-align:left">
+    <summary style="cursor:pointer;text-align:center;color:var(--muted)">Prefer to post from your own computer? (optional, more technical)</summary>
+    <p class="lead" style="margin:16px auto">The desktop app keeps your posts, queue and history on your own computer (Windows, Mac or Linux). Setup takes about 20 minutes, and the computer must be on at your posting times.</p>
+    <div class="actions" style="margin-top:12px">
+      <a class="btn btn-ghost" href="https://github.com/zypsapp/postpilot-releases/releases/latest" target="_blank" rel="noopener">Download the desktop app</a>
+    </div>
+    <ol class="steps">
+      <li><strong>Download</strong> from the link above. On Windows, choose <strong>ZypsPostPilotSetup.exe</strong>. On Mac or Linux, choose the <strong>.zip</strong> and unzip it (it needs <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">Python 3.11 or newer</a>).</li>
+      <li><strong>Run the setup wizard</strong> (<code>ZypsPostPilotSetup.exe</code>, or <code>python setup_wizard.py</code> in the unzipped folder) and paste your license key and signup email.</li>
+      <li><strong>Start PostPilot</strong> with <code>start.bat</code> (Windows) or <code>start.sh</code> (Mac/Linux). Your dashboard opens at <a href="http://localhost:8080/dashboard">localhost:8080/dashboard</a>.</li>
+      <li><strong>New computer, or lost your key?</strong> Install again and paste your key in the wizard, or <a href="https://wa.me/918350983181?text=Hi%2C%20I%20need%20my%20PostPilot%20license%20key" target="_blank" rel="noopener">WhatsApp us</a> and we will help you recover it.</li>
+    </ol>
+    <p class="note">Windows may warn about an unrecognised app the first time. Choose <em>More info → Run anyway</em>.</p>
+  </details>
+  <div class="actions"><a class="btn btn-ghost" href="/">Back to home</a></div>
 </div></div></main>
 <footer><div class="wrap">
   <span>© 2026 Zyps, a Quality Group venture.</span>
