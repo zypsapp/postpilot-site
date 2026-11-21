@@ -812,7 +812,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false" aria-controls="a2" id="q2">How much does it cost, and what's included?<span class="plus" aria-hidden="true"></span></button>
-        <div class="faq-a" id="a2" role="region" aria-labelledby="q2"><div><p>Starter ₹1,499, Business ₹3,999 and Creator ₹7,999 a month, GST included — with a GST invoice emailed after every payment. All the AI (posts, images, videos) is included: no Anthropic, OpenAI or other API keys. Your license key arrives by email and WhatsApp within 2 minutes of paying.</p></div></div>
+        <div class="faq-a" id="a2" role="region" aria-labelledby="q2"><div><p>Starter ₹1,499, Business ₹3,999 and Creator ₹7,999 a month, GST included — with a GST invoice emailed after every payment. All the AI (posts, images, videos) is included: no Anthropic, OpenAI or other API keys. Your license key arrives by email within 2 minutes of paying.</p></div></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false" aria-controls="a3" id="q3">Is there a free trial?<span class="plus" aria-hidden="true"></span></button>
@@ -1173,7 +1173,18 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
         var data = r.data || {};
         if (r.res.ok && data.success && data.free) {
           // A coupon made it free: the license is already active and on its way by email / WhatsApp
-          show("ok", data.message || "🎉 Your free month is active! Your license key has been sent to your email.");
+          // Owner, 21 Nov 2026: say which plan and until when, and give a way to log in straight away
+          var done = document.createElement("div");
+          var line = document.createElement("p");
+          line.textContent = data.message || "🎉 You're all set. Your license key has been sent to your email.";
+          done.appendChild(line);
+          var login = document.createElement("a");
+          login.className = "btn btn-primary"; login.href = "/portal.html"; login.textContent = "Log in to your account →";
+          done.appendChild(login);
+          var how = document.createElement("p");
+          how.style.cssText = "font-size:14px;margin-top:10px;opacity:.85"; how.textContent = "Use the license key from your email, or ask for a sign-in link to that email.";
+          done.appendChild(how);
+          show("ok", done);
           form.reset();
           $('input[name="plan"][value="' + payload.plan.replace("_annual", "") + '"]').checked = true;
           setCycle(/_annual$/.test(payload.plan) ? "annual" : "monthly");
@@ -1207,7 +1218,7 @@ footer{border-top:1px solid var(--line);padding:48px 0 40px;background:#08080C}
       .catch(function (err) {
         show("err", err && err.name === "AbortError"
           ? "Our server took too long to answer, but your signup may still have gone through. " +
-            "Please check your email and WhatsApp before trying again."
+            "Please check your email before trying again."
           : "We couldn't reach our server. Check your internet connection and try again — or message us on WhatsApp.");
       })
       .then(function () { clearTimeout(timeout); clearTimeout(slow); setLoading(false); });

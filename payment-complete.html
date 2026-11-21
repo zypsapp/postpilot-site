@@ -78,6 +78,10 @@ footer a{color:var(--muted);text-decoration:none}
     <button class="btn btn-primary" id="go" type="submit">Activate My Account →</button>
     <p class="msg" id="msg" role="status" aria-live="polite"></p>
   </form>
+  <div class="login" id="login" style="margin:18px 0" hidden>
+    <a class="btn btn-primary" href="/portal.html">Log in to your account →</a>
+    <p class="msg">Use the license key from your email, or ask for a sign-in link to that email.</p>
+  </div>
   <div class="pay" id="pay" hidden>
     <a class="btn btn-primary" id="pay-link" href="#" rel="noopener">Complete my payment →</a>
     <p class="msg" id="pay-note"></p>
@@ -108,11 +112,13 @@ footer a{color:var(--muted);text-decoration:none}
     if (name === "paid") {
       icon.className = "icon ok"; icon.textContent = "✅";
       $("title").textContent = "Payment successful! 🎉";
-      $("lead").textContent = "Your license key has been sent to your email and WhatsApp. It may take up to 2 minutes to arrive.";
+      $("lead").textContent = (payment && payment.term ? "Your " + payment.term + " is active. " : "") +
+        "Your license key has been sent to your email. It may take up to 2 minutes to arrive.";
+      $("login").hidden = false;
     } else if (name === "key") {
       icon.className = "icon ok"; icon.textContent = "🔑";
       $("title").textContent = "Connect your social accounts";
-      $("lead").textContent = "Enter the license key from your email or WhatsApp to connect your social accounts.";
+      $("lead").textContent = "Enter the license key from your email to connect your social accounts.";
     } else if (name === "unpaid") {
       icon.className = "icon wait"; icon.textContent = "⏳";
       $("title").textContent = "Complete your payment to activate your account";
@@ -125,7 +131,7 @@ footer a{color:var(--muted);text-decoration:none}
       } else {
         link.hidden = true;
         $("pay-note").className = "msg info";
-        $("pay-note").textContent = "Your payment link is in your email and WhatsApp.";
+        $("pay-note").textContent = "Your payment link is in your email.";
       }
       $("have-key").hidden = false;
     } else if (name === "expired") {
@@ -197,7 +203,7 @@ footer a{color:var(--muted);text-decoration:none}
     if (failed >= MAX_TRIES && payment && payment.status === "paid") {
       // We know they paid: the key is just mistyped — never tell a paying customer to pay
       return showError("Your payment went through, but that key isn't right. Copy it exactly from your " +
-                       "email or WhatsApp — or WhatsApp us and we'll help.");
+                       "email — or WhatsApp us and we'll help.");
     }
     if (failed >= MAX_TRIES) {
       msg.textContent = "";
@@ -213,7 +219,7 @@ footer a{color:var(--muted);text-decoration:none}
     e.preventDefault();
     var licenseKey = clean(input.value);
     if (!/^ZYPS-[A-Z0-9]+(-[A-Z0-9]+){2,}$/.test(licenseKey)) {
-      return wrongKey("That doesn't look like a license key. It starts with ZYPS- — copy it from your email or WhatsApp.");
+      return wrongKey("That doesn't look like a license key. It starts with ZYPS- — copy it from your email.");
     }
     input.value = licenseKey;
     msg.textContent = ""; loading(true);
